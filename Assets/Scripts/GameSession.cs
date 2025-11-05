@@ -1,5 +1,5 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class GameSession : MonoBehaviour
 {
@@ -48,7 +48,7 @@ public class GameSession : MonoBehaviour
     }
 
     public void AddCatch()
-    { 
+    {
         FishCount++;
         TimeRemaining = Mathf.Min(TimeRemaining + bonusTimePerFish, startTime + maxExtraTime);
 

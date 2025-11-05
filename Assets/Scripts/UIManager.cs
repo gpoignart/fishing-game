@@ -2,32 +2,51 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-
     // Panels
-    [SerializeField] private GameObject IdlePanel;
-    [SerializeField] private GameObject WaitPanel;
-    [SerializeField] private GameObject HookPanel;
-    [SerializeField] private GameObject DragPanel;
-    [SerializeField] private GameObject TimeOutPanel;
+    [SerializeField]
+    private GameObject IdlePanel;
+
+    [SerializeField]
+    private GameObject WaitPanel;
+
+    [SerializeField]
+    private GameObject HookPanel;
+
+    [SerializeField]
+    private GameObject DragPanel;
+
+    [SerializeField]
+    private GameObject TimeOutPanel;
 
     // Global UI elements
-    [SerializeField] private GameObject BackgroundImage;
-    [SerializeField] private GameObject Timer;
-    [SerializeField] private GameObject FishCounter;
-    [SerializeField] private GameObject Character;
+    [SerializeField]
+    private GameObject BackgroundImage;
+
+    [SerializeField]
+    private GameObject Timer;
+
+    [SerializeField]
+    private GameObject FishCounter;
+
+    [SerializeField]
+    private GameObject Character;
 
     // Hook Button (usefull to set its position randomly)
-    [SerializeField] private GameObject HookButton;
+    [SerializeField]
+    private GameObject HookButton;
 
     // FishCounter parameters (for moving it in the TimeOutPanel)
-    [SerializeField] private Transform fishCounterOriginalParent; 
+    [SerializeField]
+    private Transform fishCounterOriginalParent;
     private Vector2 FishCounterCenterPosition = new Vector2(0, 0);
     private Vector2 FishCounterTopRightPosition = new Vector2(760, 430);
 
     // Texts to update for the timer and the fishcount
-    [SerializeField] private TMPro.TextMeshProUGUI timerText;
-    [SerializeField] private TMPro.TextMeshProUGUI fishCounterText;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI timerText;
 
+    [SerializeField]
+    private TMPro.TextMeshProUGUI fishCounterText;
 
     // Called when the game start, initialize the UI
     void Start()
@@ -127,7 +146,8 @@ public class UIManager : MonoBehaviour
     // This method change the timer text color
     public void SetTimerColor(Color c)
     {
-        if (timerText) timerText.color = c;
+        if (timerText)
+            timerText.color = c;
     }
 
     // This method updates the fish count display
@@ -139,7 +159,7 @@ public class UIManager : MonoBehaviour
     // This method sets in-game ui element active and positionate top-right the fish counter
     private void SetInGameElementsActive()
     {
-        // Set the fish counter at the top-right position 
+        // Set the fish counter at the top-right position
         FishCounter.transform.SetParent(fishCounterOriginalParent, false);
         RectTransform FishCounterRect = FishCounter.GetComponent<RectTransform>();
         FishCounterRect.anchoredPosition = FishCounterTopRightPosition;
@@ -162,9 +182,12 @@ public class UIManager : MonoBehaviour
 
         // Vertical limits (the 3/4 from the bottom)
         float yMin = -HookPanelRect.rect.height / 2 + HookButtonRect.rect.height / 2;
-        float yMax = -HookPanelRect.rect.height / 2 + HookPanelRect.rect.height * 0.75f - HookButtonRect.rect.height / 2;
+        float yMax =
+            -HookPanelRect.rect.height / 2
+            + HookPanelRect.rect.height * 0.75f
+            - HookButtonRect.rect.height / 2;
 
-        // Position aléatoire
+        // Position alï¿½atoire
         float randomX = Random.Range(xMin, xMax);
         float randomY = Random.Range(yMin, yMax);
 

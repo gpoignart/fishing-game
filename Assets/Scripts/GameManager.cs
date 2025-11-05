@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 
     // References
     public UIManager uiManager;
-    public DragMinigame minigame;     // Your drag minigame script
-    public GameSession session;       // Timer + fish
+    public DragMinigame minigame; // Your drag minigame script
+    public GameSession session; // Timer + fish
 
     // States
     private bool gameStarted = false; // Is the game started
@@ -18,8 +18,10 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
     // Called when the game start, start the game mecanisms loop
@@ -36,7 +38,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Only update the timer if the game has started
-        if (gameStarted) {
+        if (gameStarted)
+        {
             session.UpdateTimer(Time.deltaTime);
         }
 
@@ -100,7 +103,7 @@ public class GameManager : MonoBehaviour
         hookPhaseActive = false;
 
         // Show the drag screen
-        uiManager.ShowDragPanel(); 
+        uiManager.ShowDragPanel();
 
         // Start the mini-game
         minigame.StartMiniGame();
@@ -108,7 +111,6 @@ public class GameManager : MonoBehaviour
         // Update the mini game state
         miniGameStarted = true;
     }
-
 
     // Called when DragMinigam invokes OnDragSuccess
     public void OnDragSuccess()
@@ -161,11 +163,11 @@ public class GameManager : MonoBehaviour
     public void OnExitButtonPressed()
     {
         // Quit the game if running inside the Unity Editor
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         // Quit the application in a built version
         Application.Quit();
-        #endif
+#endif
     }
 }

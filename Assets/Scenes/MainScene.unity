@@ -560,7 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1664535151}
   gameManager: {fileID: 245881734}
-  startTime: 20
+  startTime: 30
   bonusTimePerFish: 5
   maxExtraTime: 15
 --- !u!4 &166026295
@@ -1860,8 +1860,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00006103502, y: 8}
-  m_SizeDelta: {x: 69.022, y: 198}
+  m_AnchoredPosition: {x: 0, y: 40.3135}
+  m_SizeDelta: {x: 69.022, y: 133.373}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &779205917
 MonoBehaviour:
@@ -2166,7 +2166,8 @@ MonoBehaviour:
   pointB: {fileID: 1720226495}
   startPoint: {fileID: 1111555092}
   safeZone: {fileID: 779205916}
-  moveSpeed: 100
+  moveSpeed: 200
+  moveSafeZoneSpeed: 100
   nudgeDistance: 80
   lockThreshold: 3
   outLoseTime: 5
@@ -2558,7 +2559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -282, y: -425.93387}
+  m_AnchoredPosition: {x: -228.1, y: -425.93}
   m_SizeDelta: {x: 19.7023, y: 68.2649}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1537942632
@@ -2859,7 +2860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 358, y: -425.93387}
+  m_AnchoredPosition: {x: 300, y: -425.93}
   m_SizeDelta: {x: 19.7023, y: 68.2649}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1765606671

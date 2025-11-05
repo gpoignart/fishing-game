@@ -186,8 +186,8 @@ public class UIManager : MonoBehaviour
     {
         CharacterCatchingImage.SetActive(true);
         CharacterWaitingImage.SetActive(false);
-        FishAngryImage.SetActive(true);
         FishBasicImage.SetActive(false);
+        FishAngryImage.SetActive(true);
 
         yield return new WaitForSeconds(1f);
 
@@ -211,7 +211,6 @@ public class UIManager : MonoBehaviour
         Character.SetActive(true);
         FishBasicImage.SetActive(true);
         FishWorriedImage.SetActive(false);
-        FishAngryImage.SetActive(false);
     }
 
     // This method sets the hookButton at a random position in the canvas (in the 3/4 from the bottom)

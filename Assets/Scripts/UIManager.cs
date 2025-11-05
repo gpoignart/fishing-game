@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -31,6 +32,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject Character;
 
+    [SerializeField]
+    private GameObject CharacterWaitingImage;
+
+    [SerializeField]
+    private GameObject CharacterCatchingImage;
+
     // Hook Button (usefull to set its position randomly)
     [SerializeField]
     private GameObject HookButton;
@@ -51,6 +58,7 @@ public class UIManager : MonoBehaviour
     // Called when the game start, initialize the UI
     void Start()
     {
+        CharacterCatchingImage.SetActive(false);
         // We start on the idle panel
         ShowIdlePanel();
     }
@@ -154,6 +162,22 @@ public class UIManager : MonoBehaviour
     public void UpdateFishCounterDisplay(int fishCount)
     {
         fishCounterText.text = "x " + fishCount.ToString();
+    }
+
+    public void PlayCatchAnimation()
+    {
+        StartCoroutine(StartCatchCoroutine());
+    }
+
+    private IEnumerator StartCatchCoroutine()
+    {
+        CharacterCatchingImage.SetActive(true);
+        CharacterWaitingImage.SetActive(false);
+
+        yield return new WaitForSeconds(1f);
+
+        CharacterCatchingImage.SetActive(false);
+        CharacterWaitingImage.SetActive(true);
     }
 
     // This method sets in-game ui element active and positionate top-right the fish counter

@@ -25,7 +25,7 @@ public class GameSession : MonoBehaviour
         {
             uiManager.UpdateTimerDisplay(TimeRemaining);
             uiManager.UpdateFishCounterDisplay(FishCount);
-           // uiManager.SetTimerColor(Color.white);
+            uiManager.SetTimerColor(new Color(1f, 0.694f, 0f));
         }
         else
         {
@@ -54,5 +54,6 @@ public class GameSession : MonoBehaviour
 
         uiManager?.UpdateFishCounterDisplay(FishCount);
         uiManager?.UpdateTimerDisplay(TimeRemaining);
+        uiManager?.PlayCatchAnimation();
     }
 }

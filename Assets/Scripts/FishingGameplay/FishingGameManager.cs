@@ -2,14 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class FishingGameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static FishingGameManager Instance { get; private set; }
 
     // References
-    public UIManager uiManager;
-    public DragMinigame minigame; // Your drag minigame script
-    public GameSession session; // Timer + fish
+    public FishingUIManager uiManager;
+    public FishingMinigame minigame; // Your drag minigame script
+    public FishingGameSession session; // Timer + fish
 
     // States
     private bool gameStarted = false; // Is the game started

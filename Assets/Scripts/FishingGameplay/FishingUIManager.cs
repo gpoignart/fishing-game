@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class FishingUIManager : MonoBehaviour
 {
     // Panels
     [SerializeField]

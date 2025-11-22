@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-public class GameSession : MonoBehaviour
+public class FishingGameSession : MonoBehaviour
 {
     // Reference to the managers
-    public UIManager uiManager;
-    public GameManager gameManager;
+    public FishingUIManager uiManager;
+    public FishingGameManager gameManager;
 
     // Timer settings
     public float startTime = 60f;

@@ -787,8 +787,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 553010391}
   lootPrefab: {fileID: 7183939661906491149, guid: 1e0acbf1b33bac3459455bb0c9bb6551, type: 3}
-  monsterSpawnChance: 30
-  monsterSpawnCheckInterval: 20
+  monsterSpawnChance: 70
+  monsterSpawnCheckInterval: 10
 --- !u!1 &348795477
 GameObject:
   m_ObjectHideFlags: 0

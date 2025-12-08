@@ -10,13 +10,6 @@ public class FishingGameManager : MonoBehaviour
     // Animator
     [SerializeField] private Animator playerAnimator;
 
-    // Loot
-    [SerializeField] private GameObject lootPrefab;
-
-    // Monster apparition
-    [SerializeField] private int monsterSpawnChance = 30;
-    [SerializeField] private float monsterSpawnCheckInterval = 20f;
-
     // Internal states
     private enum FishingGameState
     {
@@ -49,7 +42,7 @@ public class FishingGameManager : MonoBehaviour
         FishingUIManager.Instance.HideLoot();
 
         // Start the monster spawn loop at night
-        // TO CHANGE : TO ADD WHEN THE MONSTER VIEW MADE : if (GameManager.Instance.CurrentTimeOfDay == TimeOfDay.Night) { StartCoroutine(MonsterSpawnLoop()); }
+        if (GameManager.Instance.CurrentTimeOfDay == GameManager.Instance.TimeOfDayRegistry.nightSO) { StartCoroutine(MonsterSpawnLoop()); }
 
         // First state
         ChangeState(FishingGameState.Moving);
@@ -83,7 +76,7 @@ public class FishingGameManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(monsterSpawnCheckInterval);
+            yield return new WaitForSeconds(GameManager.Instance.MonsterSpawnCheckInterval);
 
             // The first night, the tutorial monster appears always after the first interval
             if (GameManager.Instance.IsFirstNight)
@@ -91,7 +84,7 @@ public class FishingGameManager : MonoBehaviour
                 GameManager.Instance.EnterMonsterView();
             }
             // The other nights, a monster can appear with a monsterSpawnChance at each interval
-            else if (Random.Range(0, 100) <= monsterSpawnChance)
+            else if (Random.Range(0, 100) <= GameManager.Instance.MonsterSpawnChance)
             {
                 GameManager.Instance.EnterMonsterView();
             }

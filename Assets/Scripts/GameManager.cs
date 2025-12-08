@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RecipeRegistry recipeRegistry;
     [SerializeField] private FishRegistry fishRegistry;
 
+    // Monster apparition
+    [SerializeField] private int monsterSpawnChance = 70;
+    [SerializeField] private float monsterSpawnCheckInterval = 10f;
+
     // Internal attributes
     private MapSO currentMap;
     private TimeOfDaySO currentTimeOfDay;
@@ -40,6 +44,8 @@ public class GameManager : MonoBehaviour
     public bool IsFirstDay => isFirstDay;
     public bool IsFirstNight => isFirstNight;
     public bool IsRecipeBookUnlocked => isRecipeBookUnlocked;
+    public int MonsterSpawnChance => monsterSpawnChance;
+    public float MonsterSpawnCheckInterval => monsterSpawnCheckInterval;
 
     // Internal states
     private enum GameState
@@ -138,10 +144,11 @@ public class GameManager : MonoBehaviour
     // Called in the MonsterView Scene after winning
     public void WinAgainstMonster()
     {
+        Debug.Log("Win against monster");
         if (isFirstNight)
         {
             ChangeCurrentTimeOfDay();
-            // TO CHANGE BY WHEN THE RECIPE BOOK EVENT MADE : add ChangeState(GameState.RecipeBookEvent);
+            ChangeState(GameState.MapSelection); // TO CHANGE BY WHEN THE RECIPE BOOK EVENT MADE : add ChangeState(GameState.RecipeBookEvent);
         }
         else
         {
@@ -261,7 +268,7 @@ public class GameManager : MonoBehaviour
     // Called when the time is out, we exit the fishing/monster view and return to the map selection
     private void TimeOut()
     {
-        // TO CHANGE WHEN MONSTER VIEW MADE : add if (isFirstNight) { return; } // The first night is not influenced by the timer as it's the monster tutorial
+        if (isFirstNight) { return; } // The first night is not influenced by the timer as it's the monster tutorial
         ChangeCurrentTimeOfDay();
         ChangeState(GameState.MapSelection);
     }
@@ -294,6 +301,7 @@ public class GameManager : MonoBehaviour
         {
             currentTimeOfDay = TimeOfDayRegistry.nightSO;
             nightsCount++;
+            isFirstDay = false;
             if (nightsCount == 1) { isFirstNight = true; }
             else { isFirstNight = false; }
         }
@@ -301,6 +309,7 @@ public class GameManager : MonoBehaviour
         {
             currentTimeOfDay = TimeOfDayRegistry.daySO;
             daysCount++;
+            isFirstNight = false;
             if (daysCount == 1) { isFirstDay = true; }
             else { isFirstDay = false; }
         }

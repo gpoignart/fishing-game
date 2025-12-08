@@ -313,14 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd03372a3d043704595400d236fc36bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientSOs:
-  - {fileID: 11400000, guid: 57ca48c96a33ea5438a5f71644b5fd30, type: 2}
-  - {fileID: 11400000, guid: 3e8862e06e3b13b41a8f1dcfb4afef01, type: 2}
-  - {fileID: 11400000, guid: c5bd151055811c940a2cdcfe2da026a7, type: 2}
-  - {fileID: 11400000, guid: 58422352caa5cfd4faa44e75b0c86049, type: 2}
-  - {fileID: 11400000, guid: 9cc22c2b47fdaf0439e1be7ce5985b45, type: 2}
-  - {fileID: 11400000, guid: 55def6a609144bb4f8c3bd67dbc8b790, type: 2}
-  - {fileID: 11400000, guid: 3b68ed947b64a8c40bb67dc5b708e4ea, type: 2}
 --- !u!4 &79490124
 Transform:
   m_ObjectHideFlags: 0

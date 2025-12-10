@@ -6,6 +6,6 @@ public class DaySO : TimeOfDaySO
     public override void Initialize()
     {
         this.timeOfDayName = "Day";
-        this.duration = 60f;
+        this.duration = 30f;
     }
 }

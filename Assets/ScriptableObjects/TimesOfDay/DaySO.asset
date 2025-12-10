@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DaySO
   m_EditorClassIdentifier: 
   timeOfDayName: Day
-  duration: 60
+  duration: 30

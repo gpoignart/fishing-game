@@ -8,16 +8,30 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // World content
-    [SerializeField] private TimeOfDayRegistry timeOfDayRegistry;
-    [SerializeField] private MapRegistry mapRegistry;
-    [SerializeField] private PlayerEquipmentRegistry playerEquipmentRegistry;
-    [SerializeField] private IngredientRegistry ingredientRegistry;
-    [SerializeField] private RecipeRegistry recipeRegistry;
-    [SerializeField] private FishRegistry fishRegistry;
+    [SerializeField]
+    private TimeOfDayRegistry timeOfDayRegistry;
+
+    [SerializeField]
+    private MapRegistry mapRegistry;
+
+    [SerializeField]
+    private PlayerEquipmentRegistry playerEquipmentRegistry;
+
+    [SerializeField]
+    private IngredientRegistry ingredientRegistry;
+
+    [SerializeField]
+    private RecipeRegistry recipeRegistry;
+
+    [SerializeField]
+    private FishRegistry fishRegistry;
 
     // Monster apparition
-    [SerializeField] private int monsterSpawnChance = 70;
-    [SerializeField] private float monsterSpawnCheckInterval = 10f;
+    [SerializeField]
+    private int monsterSpawnChance = 70;
+
+    [SerializeField]
+    private float monsterSpawnCheckInterval = 10f;
 
     // Internal attributes
     private MapSO currentMap;
@@ -56,8 +70,10 @@ public class GameManager : MonoBehaviour
         MonsterView,
         IntroEvent,
         RecipeBookEvent,
-        EndEvent
+        EndEvent,
+        TutorialFishingView,
     }
+
     private GameState currentState;
 
     // Make this class a singleton
@@ -99,7 +115,6 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.MapSelection);
     }
 
-
     // PUBLIC FONCTIONS
 
     // Called at the end of the introEvent
@@ -131,8 +146,15 @@ public class GameManager : MonoBehaviour
     public void SelectMap(MapSO mapSelected)
     {
         currentMap = mapSelected;
-        StartTimer();
-        ChangeState(GameState.FishingView);
+        if (isFirstDay)
+        {
+            ChangeState(GameState.TutorialFishingView);
+        }
+        else
+        {
+            StartTimer();
+            ChangeState(GameState.FishingView);
+        }
     }
 
     // Called in the FishingView Scene in need of passing in monster view
@@ -197,9 +219,14 @@ public class GameManager : MonoBehaviour
     // Called when upgrading equipment
     public void UpgradeEquipment(PlayerEquipmentSO playerEquipment)
     {
-        playerEquipment.level ++;
+        playerEquipment.level++;
     }
 
+    public void ExitTutorialView()
+    {
+        StartTimer();
+        ChangeState(GameState.FishingView);
+    }
 
     // PRIVATE FONCTIONS
 
@@ -230,6 +257,8 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.EndEvent:
+                break;
+            case GameState.TutorialFishingView:
                 break;
         }
     }
@@ -262,13 +291,19 @@ public class GameManager : MonoBehaviour
             case GameState.EndEvent:
                 SceneManager.LoadScene("EndEvent");
                 break;
+            case GameState.TutorialFishingView:
+                SceneManager.LoadScene("TutorialFishingView");
+                break;
         }
     }
 
     // Called when the time is out, we exit the fishing/monster view and return to the map selection
     private void TimeOut()
     {
-        if (isFirstNight) { return; } // The first night is not influenced by the timer as it's the monster tutorial
+        if (isFirstNight)
+        {
+            return;
+        } // The first night is not influenced by the timer as it's the monster tutorial
         ChangeCurrentTimeOfDay();
         ChangeState(GameState.MapSelection);
     }
@@ -302,16 +337,28 @@ public class GameManager : MonoBehaviour
             currentTimeOfDay = TimeOfDayRegistry.nightSO;
             nightsCount++;
             isFirstDay = false;
-            if (nightsCount == 1) { isFirstNight = true; }
-            else { isFirstNight = false; }
+            if (nightsCount == 1)
+            {
+                isFirstNight = true;
+            }
+            else
+            {
+                isFirstNight = false;
+            }
         }
         else
         {
             currentTimeOfDay = TimeOfDayRegistry.daySO;
             daysCount++;
             isFirstNight = false;
-            if (daysCount == 1) { isFirstDay = true; }
-            else { isFirstDay = false; }
+            if (daysCount == 1)
+            {
+                isFirstDay = true;
+            }
+            else
+            {
+                isFirstDay = false;
+            }
         }
     }
 }

@@ -9,64 +9,54 @@ public class TheEyes : MonoBehaviour
     private SpriteRenderer sr;
     private bool isHit = false;
 
-    private float idleAlpha = 0.25f;
-    private float fullAlpha = 1f;
-
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
     }
 
-    // Called when spawned
     public void Init(int side)
     {
+        // Eyes appear immediately but very faint
         sr.sprite = eyesNormal;
-        sr.color = new Color(1f, 1f, 1f, idleAlpha);
+        sr.color = new Color(1f, 1f, 1f, 0.2f);
     }
 
     public void HitByFlashlight()
     {
-        if (isHit) return;
-        isHit = true;
-
-        StartCoroutine(EyesReaction());
+        if (!isHit)
+        {
+            isHit = true;
+            StartCoroutine(EyesReaction());
+        }
     }
 
     IEnumerator EyesReaction()
     {
-       
+        // Brighten eyes quickly
         float t = 0f;
-        float durationBrighten = 1f;
-
-        while (t < durationBrighten)
+        while (t < 1f)
         {
-            t += Time.deltaTime;
-            float alpha = Mathf.Lerp(idleAlpha, fullAlpha, t / durationBrighten);
+            t += Time.deltaTime * 4f;
+            float alpha = Mathf.Lerp(0.2f, 1f, t);
             sr.color = new Color(1f, 1f, 1f, alpha);
             yield return null;
         }
 
-        
+        // Switch sprite → squint eyes
         sr.sprite = eyesSquint;
-        yield return new WaitForSeconds(2f); 
+        yield return new WaitForSeconds(0.15f);
 
-    
-        float fadeT = 0f;
-        float fadeDuration = 2f;
-
-        while (fadeT < fadeDuration)
+        // Fade out
+        t = 1f;
+        while (t > 0f)
         {
-            fadeT += Time.deltaTime;
-            float alpha = Mathf.Lerp(fullAlpha, 0f, fadeT / fadeDuration);
+            t -= Time.deltaTime * 3f;
+            float alpha = Mathf.Clamp01(t);
             sr.color = new Color(1f, 1f, 1f, alpha);
             yield return null;
         }
 
-        sr.color = new Color(1f, 1f, 1f, 0f);
-
-      
+        // 4) End encounter
         MonsterGameManager.Instance.PlayerWin();
-
-        Destroy(gameObject);
     }
 }

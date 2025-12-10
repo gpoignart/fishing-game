@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15797df2b74a2d9408b8f24e610dd590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TheEyes: {fileID: 5313816559094154554, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
+  TheEyes: {fileID: 649523097334142833, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
   leftSpawn: {fileID: 1325816496}
   rightSpawn: {fileID: 1597884848}
 --- !u!4 &207695580
@@ -370,7 +370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 572138299}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1111439900}
   - component: {fileID: 1111439899}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Night-Common
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -924,7 +924,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &1165325840
 RectTransform:
@@ -958,7 +958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1274109085}
   - component: {fileID: 1274109084}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tackle-box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,7 +1005,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e205c0809e2a91d4588447791d4c191e, type: 3}
   m_Color: {r: 0.44654083, g: 0.44654083, b: 0.44654083, a: 1}
   m_FlipX: 0
@@ -1109,63 +1109,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 431043092}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1331398452
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1576733364325168442, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1576733364325168442, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 1576733364325168442, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1576733364325168442, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1576733364325168442, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1576733364325168442, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1576733364325168442, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1576733364325168442, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1576733364325168442, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1576733364325168442, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5313816559094154554, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
-      propertyPath: m_Name
-      value: TheEyes
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: efe1a035c42c6a846838e5ed88ea5f28, type: 3}
 --- !u!1 &1581495864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,7 +1534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1976683567}
   - component: {fileID: 1976683566}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BG-Trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1723,4 +1666,3 @@ SceneRoots:
   - {fileID: 2025436059}
   - {fileID: 207695580}
   - {fileID: 1603924831}
-  - {fileID: 1331398452}

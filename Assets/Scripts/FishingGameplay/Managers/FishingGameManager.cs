@@ -39,7 +39,6 @@ public class FishingGameManager : MonoBehaviour
     void Start()
     {
         FishingUIManager.Instance.UpdateTimerUI(GameManager.Instance.TimeRemaining);
-        FishingUIManager.Instance.HideLoot();
 
         // Start the monster spawn loop at night
         if (GameManager.Instance.CurrentTimeOfDay == GameManager.Instance.TimeOfDayRegistry.nightSO) { StartCoroutine(MonsterSpawnLoop()); }
@@ -63,6 +62,7 @@ public class FishingGameManager : MonoBehaviour
 
             case FishingGameState.Hooking:
                 PlayerController.Instance.UpdatePlayer();
+                if (Input.GetKeyDown(KeyCode.Space)) { OnHookButtonPressed(); } // Click on hook button with space
                 break;
 
             case FishingGameState.Fishing:
@@ -172,17 +172,26 @@ public class FishingGameManager : MonoBehaviour
         ChangeState(FishingGameState.Fishing);
     }
 
+    // Called when the player clicks inventory button
+    public void OnInventoryButtonPressed()
+    {
+        GameManager.Instance.EnterInventory();
+    }
+
     // Called by the FishingMinigameManager when success
     public void FishingMinigameSuccess()
     {
         ChangeState(FishingGameState.Moving);
 
-        // Trigger player animation
-        playerAnimator.SetTrigger("OnCatch");
-
         // Obtain the ingredient
         pendingLoot = currentFishBelow.fishSO.drops[Random.Range(0, currentFishBelow.fishSO.drops.Length)];
         GameManager.Instance.AddIngredient(pendingLoot, 1);
+
+        // Trigger player animation
+        playerAnimator.SetTrigger("OnCatch");
+
+        // Show the loot
+        FishingUIManager.Instance.ShowLoot(pendingLoot);
 
         // Delete the fish
         Destroy(currentFishBelow.gameObject);
@@ -194,20 +203,11 @@ public class FishingGameManager : MonoBehaviour
     {
         ChangeState(FishingGameState.Moving);
 
+        // Show the loseFishText
+        FishingUIManager.Instance.ShowLoseFishText();
+
         // Delete the fish
         Destroy(currentFishBelow.gameObject);
         currentFishBelow = null;
-    }
-
-    // Show the loot
-    public void ShowLoot()
-    {
-        FishingUIManager.Instance.ShowLoot(pendingLoot);
-    }
-
-    // Hide the loot
-    public void HideLoot()
-    {
-        FishingUIManager.Instance.HideLoot();
     }
 }

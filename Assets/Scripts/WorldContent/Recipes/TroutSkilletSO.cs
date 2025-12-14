@@ -9,8 +9,8 @@ public class TroutSkilletSO : RecipeSO
         description = "Upgrades Flashlight to level 2.";
         ingredients = new RecipeIngredient[]
         {
-            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.troutMeatSO, quantity: 10),
-            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.shinyFinSO, quantity: 10)
+            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.troutMeatSO, quantity: 5),
+            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.shinyFinSO, quantity: 5)
         };
         hasAlreadyBeenUsed = false;
         isFinalRecipe = false;

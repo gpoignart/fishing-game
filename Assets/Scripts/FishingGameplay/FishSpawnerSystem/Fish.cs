@@ -10,6 +10,5 @@ public class Fish : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = fishSO.sprite;
-        sr.color = fishSO.color; // TO REMOVE when real sprite added
     }
 }

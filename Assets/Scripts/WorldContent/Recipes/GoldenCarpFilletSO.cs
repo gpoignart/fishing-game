@@ -9,9 +9,9 @@ public class GoldenCarpFilletSO : RecipeSO
         description = "Upgrades Fishing Rod to level 3.";
         ingredients = new RecipeIngredient[]
         {
-            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.carpMeatSO, quantity: 10),
-            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.carpToothSO, quantity: 10),
-            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.glimmeringScaleSO, quantity: 5)
+            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.carpMeatSO, quantity: 5),
+            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.carpToothSO, quantity: 5),
+            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.glimmeringScaleSO, quantity: 3)
         };
         hasAlreadyBeenUsed = false;
         isFinalRecipe = false;

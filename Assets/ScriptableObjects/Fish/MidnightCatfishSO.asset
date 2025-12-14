@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: MidnightCatfishSO
   m_EditorClassIdentifier: 
   fishName: MidnightCatfish
-  sprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
-  color: {r: 1, g: 0, b: 1, a: 1}
-  spawnMaps: 01000000
-  spawnTimes: 01000000
-  drops: 05000000
+  sprite: {fileID: 21300000, guid: c0742ea1029e88f46a52d94ee33ec97e, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 0}
+  spawnMaps:
+  - {fileID: 11400000, guid: 5ae9edb074f58264691736a7cd7728a7, type: 2}
+  spawnTimes:
+  - {fileID: 11400000, guid: 5169ba54d93560e43b170091f8176e18, type: 2}
+  drops:
+  - {fileID: 11400000, guid: 4f546e8e782967d4fa04242abd65016c, type: 2}
   spawnChance: 15
   catchingDifficulties:
-  - time: 1
+  - time: {fileID: 11400000, guid: 5169ba54d93560e43b170091f8176e18, type: 2}
     safeZoneMoveSpeed: 170
     requiredTimeInsideZone: 3
     allowedTimeOutsideZone: 2.5

@@ -6,7 +6,6 @@ public class GoldenSalmonSO : FishSO
     public override void Initialize()
     {
         this.fishName = "GoldenSalmon";
-        this.color = Color.yellow;
         this.spawnMaps = new MapSO[] { GameManager.Instance.MapRegistry.driftwoodRiverSO };
         this.spawnTimes = new TimeOfDaySO[] { GameManager.Instance.TimeOfDayRegistry.daySO, GameManager.Instance.TimeOfDayRegistry.nightSO };
         this.drops = new IngredientSO[] { GameManager.Instance.IngredientRegistry.glimmeringScaleSO };

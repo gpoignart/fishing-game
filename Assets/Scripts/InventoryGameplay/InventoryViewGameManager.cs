@@ -35,7 +35,7 @@ public class InventoryViewGameManager : MonoBehaviour
     }
 
     // Exit inventory
-    public void OnReturnToMapSelectionButtonPressed()
+    public void OnExitButtonPressed()
     {
         GameManager.Instance.ExitInventory();
     }

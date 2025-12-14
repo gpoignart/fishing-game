@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MonsterView.unity
     guid: f4135019077d0df42a97f40dd139b280
   - enabled: 1
-    path: Assets/Scenes/TutorialFishingView.unity
-    guid: 8503fe99e1fbd1f44b66666e507b026d
+    path: Assets/Scenes/TransitionView.unity
+    guid: a3ec835baae75f7479c7fc78ca0cbde6
   m_configObjects: {}

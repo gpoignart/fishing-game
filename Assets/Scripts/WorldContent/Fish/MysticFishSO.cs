@@ -6,7 +6,6 @@ public class MysticFishSO : FishSO
     public override void Initialize()
     {
         this.fishName = "MysticFish";
-        this.color = Color.black;
         this.spawnMaps = new MapSO[] { GameManager.Instance.MapRegistry.arcaneLakeSO };
         this.spawnTimes = new TimeOfDaySO[] { GameManager.Instance.TimeOfDayRegistry.nightSO };
         this.drops = new IngredientSO[] { GameManager.Instance.IngredientRegistry.mysticEssenceSO };

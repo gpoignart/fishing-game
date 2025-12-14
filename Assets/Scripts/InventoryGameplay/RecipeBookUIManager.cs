@@ -12,11 +12,13 @@ public class RecipeBookUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI recipeDescriptionTextL;
     [SerializeField] private Transform ingredientPanelL;
     [SerializeField] private Button makeRecipeL;
+    [SerializeField] private TextMeshProUGUI instructionTextL;
 
     [SerializeField] private TextMeshProUGUI recipeNameTextR;
     [SerializeField] private TextMeshProUGUI recipeDescriptionTextR;
     [SerializeField] private Transform ingredientPanelR;
     [SerializeField] private Button makeRecipeR;
+    [SerializeField] private TextMeshProUGUI instructionTextR;
 
     [SerializeField] private Button nextButton;
     [SerializeField] private Button previousButton;
@@ -53,61 +55,42 @@ public class RecipeBookUIManager : MonoBehaviour
         nextButton.gameObject.SetActive(false);
     }
 
-    public void MakeRecipeLeftButtonInteractive()
-    {
-        makeRecipeL.interactable = true;
-    }
-
-    public void MakeRecipeLeftButtonNotInteractive()
-    {
-        makeRecipeL.interactable = false;
-    }
-
-    public void MakeRecipeRightButtonInteractive()
-    {
-        makeRecipeR.interactable = true;
-    }
-
-    public void MakeRecipeRightButtonNotInteractive()
-    {
-        makeRecipeR.interactable = false;
-    }
-
-    public void UpdateLeftPageUI(RecipeSO recipe)
+    public void UpdateLeftPageUI(RecipeSO recipe, int currentLeftRecipeAvailableCode)
     {
         if (recipe == null)
         {
-            EmptyOnePageUI(recipeNameTextL, recipeDescriptionTextL, ingredientPanelL, makeRecipeL);
+            EmptyOnePageUI(recipeNameTextL, recipeDescriptionTextL, ingredientPanelL, makeRecipeL, instructionTextL);
         }
         else
         {
-            UpdateOnePageUI(recipe, recipeNameTextL, recipeDescriptionTextL, ingredientPanelL, makeRecipeL);
+            UpdateOnePageUI(recipe, recipeNameTextL, recipeDescriptionTextL, ingredientPanelL, makeRecipeL, instructionTextL, currentLeftRecipeAvailableCode);
         }
     }
 
-    public void UpdateRightPageUI(RecipeSO recipe)
+    public void UpdateRightPageUI(RecipeSO recipe, int currentRightRecipeAvailableCode)
     {
         if (recipe == null)
         {
-            EmptyOnePageUI(recipeNameTextR, recipeDescriptionTextR, ingredientPanelR, makeRecipeR);
+            EmptyOnePageUI(recipeNameTextR, recipeDescriptionTextR, ingredientPanelR, makeRecipeR, instructionTextR);
         }
         else
         {
-            UpdateOnePageUI(recipe, recipeNameTextR, recipeDescriptionTextR, ingredientPanelR, makeRecipeR);
+            UpdateOnePageUI(recipe, recipeNameTextR, recipeDescriptionTextR, ingredientPanelR, makeRecipeR, instructionTextR, currentRightRecipeAvailableCode);
         }
     }
 
-    public void EmptyOnePageUI(TextMeshProUGUI recipeNameText, TextMeshProUGUI recipeDescriptionText, Transform ingredientPanel, Button makeRecipeButton)
+    public void EmptyOnePageUI(TextMeshProUGUI recipeNameText, TextMeshProUGUI recipeDescriptionText, Transform ingredientPanel, Button makeRecipeButton, TextMeshProUGUI instructionText)
     {
         recipeNameText.text = "";
         recipeDescriptionText.text = "";
         makeRecipeButton.gameObject.SetActive(false);
+        instructionText.text = "";
 
         // Empty previous elements
         foreach (Transform child in ingredientPanel) Destroy(child.gameObject);
     }
 
-    public void UpdateOnePageUI(RecipeSO recipe, TextMeshProUGUI recipeNameText, TextMeshProUGUI recipeDescriptionText, Transform ingredientPanel, Button makeRecipeButton)
+    public void UpdateOnePageUI(RecipeSO recipe, TextMeshProUGUI recipeNameText, TextMeshProUGUI recipeDescriptionText, Transform ingredientPanel, Button makeRecipeButton, TextMeshProUGUI instructionText, int currentRecipeAvailableCode)
     {
         recipeNameText.text = recipe.recipeName;
         recipeDescriptionText.text = recipe.description;
@@ -129,6 +112,27 @@ public class RecipeBookUIManager : MonoBehaviour
             img.sprite = recipeIngredient.ingredientSO.sprite;
             img.color = recipeIngredient.ingredientSO.color;
             text.text = $"{recipeIngredient.quantity} x {recipeIngredient.ingredientSO.ingredientName}";
+        }
+
+        // Handle make recipe button and instruction text
+        if (currentRecipeAvailableCode == 0)
+        {
+            makeRecipeButton.interactable = true;
+        }
+        else if (currentRecipeAvailableCode == 1)
+        {
+            makeRecipeButton.interactable = false;
+            instructionText.text = "Equipment needs to be level 2 before.";
+        }
+        else if (currentRecipeAvailableCode == 2)
+        {
+            makeRecipeButton.interactable = false;
+            instructionText.text = "Not enough ingredients.";
+        }
+        else if (currentRecipeAvailableCode == 3)
+        {
+            makeRecipeButton.interactable = false;
+            instructionText.text = "Recipe has already been used.";
         }
     }
 }

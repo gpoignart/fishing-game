@@ -13,7 +13,7 @@ public class CatfishNightStewSO : RecipeSO
             new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.carpToothSO, quantity: 5),
             new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.troutMeatSO, quantity: 5),
             new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.shinyFinSO, quantity: 5),
-            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.shadowingEyeSO, quantity: 3)
+            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.shadowingEyeSO, quantity: 1)
         };
         hasAlreadyBeenUsed = false;
         isFinalRecipe = false;

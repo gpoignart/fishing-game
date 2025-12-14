@@ -14,9 +14,9 @@ public class RecipeBookGameManager : MonoBehaviour
     // Internal attributes
     private int currentPageIndex = 0; // Index of the actual left page
     private RecipeSO currentLeftRecipe;
-    private bool isCurrentLeftRecipeAvailable;
+    private int currentLeftRecipeAvailableCode;
     private RecipeSO currentRightRecipe;
-    private bool isCurrentRightRecipeAvailable;
+    private int currentRightRecipeAvailableCode;
 
     // Make this class a singleton
     private void Awake()
@@ -74,77 +74,49 @@ public class RecipeBookGameManager : MonoBehaviour
         if (currentPageIndex + 2 < GameManager.Instance.RecipeRegistry.AllRecipes.Length) { RecipeBookUIManager.Instance.ShowNextButton(); }
         else { RecipeBookUIManager.Instance.HideNextButton(); }
 
-
-        // Recipe page
-        RecipeBookUIManager.Instance.UpdateLeftPageUI(currentLeftRecipe);
-        RecipeBookUIManager.Instance.UpdateRightPageUI(currentRightRecipe);
-
-        // Make Recipe button left
-        if (currentLeftRecipe != null)
-        {
-            if (isCurrentLeftRecipeAvailable)
-            {
-                RecipeBookUIManager.Instance.MakeRecipeLeftButtonInteractive();
-            }
-            else
-            {
-                RecipeBookUIManager.Instance.MakeRecipeLeftButtonNotInteractive();
-            }
-        }
-
-        // Make Recipe button right
-        if (currentRightRecipe != null)
-        {
-            if (isCurrentRightRecipeAvailable)
-            {
-                RecipeBookUIManager.Instance.MakeRecipeRightButtonInteractive();
-            }
-            else
-            {
-                RecipeBookUIManager.Instance.MakeRecipeRightButtonNotInteractive();
-            }
-        }
+        // Recipe pages
+        RecipeBookUIManager.Instance.UpdateLeftPageUI(currentLeftRecipe, currentLeftRecipeAvailableCode);
+        RecipeBookUIManager.Instance.UpdateRightPageUI(currentRightRecipe, currentRightRecipeAvailableCode);
     }
 
     // Find current recipes
     private void UpdateCurrentRecipes()
     {
         currentLeftRecipe = null;
-        isCurrentLeftRecipeAvailable = false;
         currentRightRecipe = null;
-        isCurrentRightRecipeAvailable = false;
 
         if (GameManager.Instance.RecipeRegistry.AllRecipes.Length > currentPageIndex)
         {
             currentLeftRecipe = GameManager.Instance.RecipeRegistry.AllRecipes[currentPageIndex];
-            isCurrentLeftRecipeAvailable = checkRecipeAvailable(currentLeftRecipe);
+            currentLeftRecipeAvailableCode = checkRecipeAvailable(currentLeftRecipe);
         }
 
         if (GameManager.Instance.RecipeRegistry.AllRecipes.Length > currentPageIndex + 1)
         {
             currentRightRecipe = GameManager.Instance.RecipeRegistry.AllRecipes[currentPageIndex + 1];
-            isCurrentRightRecipeAvailable = checkRecipeAvailable(currentRightRecipe);
+            currentRightRecipeAvailableCode = checkRecipeAvailable(currentRightRecipe);
         }
     }
 
-    // Check if the player has enough ingredients for a recipe and if the recipe has not been already used
-    private bool checkRecipeAvailable(RecipeSO recipe)
+    // Return 0 if available, 1 if equipment is level 1 and recipe is level 3, 2 if not enough ingredients, 3 if the recipe has already been used
+    private int checkRecipeAvailable(RecipeSO recipe)
     {
         // Recipe already used
-        if (recipe.hasAlreadyBeenUsed) { return false; }
-
-        // Recipe for a 3 upgrade if a 2 upgrade has not been made (the final recipe is an exception)
-        if (!recipe.isFinalRecipe && recipe.upgradesEquipment.level != 2 && recipe.upgradesToLevel == 3) { return false; }
-
+        if (recipe.hasAlreadyBeenUsed) { return 3; }
+        
         // Check if enough ingredients
         foreach (var recipeIngredient in recipe.ingredients)
         {
             if (recipeIngredient.ingredientSO.playerQuantityPossessed < recipeIngredient.quantity)
             {
-                return false;
+                return 2;
             }
         }
-        return true;
+
+        // Recipe for a 3 upgrade if a 2 upgrade has not been made (the final recipe is an exception)
+        if (!recipe.isFinalRecipe && recipe.upgradesEquipment.level != 2 && recipe.upgradesToLevel == 3) { return 1; }
+
+        return 0;
     }
 
     // Update inventory according to the recipe

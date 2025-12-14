@@ -6,7 +6,6 @@ public class CarpSO : FishSO
     public override void Initialize()
     {
         this.fishName = "Carp";
-        this.color = Color.gray;
         this.spawnMaps = new MapSO[] { GameManager.Instance.MapRegistry.driftwoodRiverSO, GameManager.Instance.MapRegistry.shadowmoonMarshSO };
         this.spawnTimes = new TimeOfDaySO[] { GameManager.Instance.TimeOfDayRegistry.daySO, GameManager.Instance.TimeOfDayRegistry.nightSO };
         this.drops = new IngredientSO[] { GameManager.Instance.IngredientRegistry.carpMeatSO, GameManager.Instance.IngredientRegistry.carpToothSO };

@@ -4,7 +4,6 @@ public abstract class FishSO : ScriptableObject
 {
     public string fishName;
     public Sprite sprite;
-    public Color color; // To remove when we'll got real sprite
     public MapSO[] spawnMaps;
     public TimeOfDaySO[] spawnTimes;
     public IngredientSO[] drops;

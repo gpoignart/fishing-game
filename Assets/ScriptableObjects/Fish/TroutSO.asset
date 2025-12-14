@@ -13,19 +13,25 @@ MonoBehaviour:
   m_Name: TroutSO
   m_EditorClassIdentifier: 
   fishName: Trout
-  sprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
-  color: {r: 1, g: 0, b: 0, a: 1}
-  spawnMaps: 0000000002000000
-  spawnTimes: 0000000001000000
-  drops: 0200000003000000
+  sprite: {fileID: 21300000, guid: 6451387a33bf7f845bb85a625cb56b48, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 0}
+  spawnMaps:
+  - {fileID: 11400000, guid: bce46c8000792094fa6fde8765bb8c49, type: 2}
+  - {fileID: 11400000, guid: 6fbcdfdbf7d32e742ac214e102065a01, type: 2}
+  spawnTimes:
+  - {fileID: 11400000, guid: 3c477c3a73369b443af7b7e9632cc91c, type: 2}
+  - {fileID: 11400000, guid: 5169ba54d93560e43b170091f8176e18, type: 2}
+  drops:
+  - {fileID: 11400000, guid: c5bd151055811c940a2cdcfe2da026a7, type: 2}
+  - {fileID: 11400000, guid: eea050943ba2ed04f8a11ffd8854b360, type: 2}
   spawnChance: 70
   catchingDifficulties:
-  - time: 0
+  - time: {fileID: 11400000, guid: 3c477c3a73369b443af7b7e9632cc91c, type: 2}
     safeZoneMoveSpeed: 100
     requiredTimeInsideZone: 1.5
     allowedTimeOutsideZone: 3.5
     safeZoneWidth: 170
-  - time: 1
+  - time: {fileID: 11400000, guid: 5169ba54d93560e43b170091f8176e18, type: 2}
     safeZoneMoveSpeed: 120
     requiredTimeInsideZone: 2
     allowedTimeOutsideZone: 3

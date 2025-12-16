@@ -12,18 +12,19 @@ Contains all audio files for the game.
 Contains generic fish model.
 
 ### ScriptableObjects
-Contains ScriptableObjects used to configure gameplay:  
-- **FishTypes**: all types of fish.  
+Contains ScriptableObjects used to configure gameplay.
 
 ### Script
 Organized by gameplay domain:  
+- **MenuGameplay**: scripts related to menu.
 - **FishingGameplay**: scripts related to fishing view gameplay.  
 - **MonsterGameplay**: scripts related to monster view gameplay.  
-- **MapSelection**: scripts related to map selection.
-- **InventoryView**: scripts related to inventory view.
+- **MapSelectionGameplay**: scripts related to map selection.
+- **InventoryGameplay**: scripts related to inventory view.
+- **TransitionGameplay**: scripts related to transitions.
+- **WorldContent**: scripts to initialize SOs objects.
+- **SaveSystem**: scripts to save the datas and load them.
 - GameManager: the persistent game manager.
-- World content: enumerations of world content items (maps, ingredients, equipments...)
-- InventoryManager: the persistent inventory.
 
 ### Scenes
 Contains all game scenes:
@@ -32,4 +33,5 @@ Contains all game scenes:
 - **FishingView**: fishing view.
 - **MonsterView**: first-person monster combat scene.
 - **InventoryView**: the inventory view where use recipe and view inventory.
+- **TransitionView**: the view to display transitions between certain states.
 - **Events/**: scenes handling special scenario events.

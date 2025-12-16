@@ -13,13 +13,13 @@ public class RecipeRegistry
     public RecipeSO[] AllRecipes =>
         new RecipeSO[]
         {
-                carpSkilletSO,
-                troutSkilletSO,
-                fishermansMixSO,
-                goldenCarpFilletSO,
-                goldenTroutFilletSO,
-                catfishNightStewSO,
-                elixirOfTheCursedSO
+            carpSkilletSO,
+            troutSkilletSO,
+            fishermansMixSO,
+            goldenCarpFilletSO,
+            goldenTroutFilletSO,
+            catfishNightStewSO,
+            elixirOfTheCursedSO
         };
 
     public void Initialize()

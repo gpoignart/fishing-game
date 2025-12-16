@@ -5,15 +5,14 @@ public class PlayerController : MonoBehaviour
     // Allow to call PlayerController.Instance anywhere (singleton)
     public static PlayerController Instance { get; private set; }
 
-    [SerializeField]
-    private Transform fishContainer;
+    [SerializeField] private Transform fishContainer;
 
-    [SerializeField]
-    private Transform fishingRodTip;
+    [SerializeField] private Transform fishingRodTip;
+
+    // Parameters
+    private float detectionRadius = 0.4f;
 
     // Internal properties
-    private float detectionRadius = 0.4f;
-    private float speed = 2f;
     private float minX, maxX;
     private Vector3 firstPosition;
 
@@ -73,7 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         // Take horizontal inputs (A/D or arrows)
         float horizontal = Input.GetAxisRaw("Horizontal");
-        Vector3 newPosition = transform.position + Vector3.right * horizontal * speed * Time.deltaTime;
+        Vector3 newPosition = transform.position + Vector3.right * horizontal * GameManager.Instance.PlayerEquipmentRegistry.boatSO.speed * Time.deltaTime;
 
         // Clamp so the whole player stays visible
         newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);

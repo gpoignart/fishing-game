@@ -8,6 +8,10 @@ public class FishingGameManager : MonoBehaviour
     public static FishingGameManager Instance { get; private set; }
 
 
+    // Parameters
+    private int monsterSpawnChance = 50;
+    private float monsterSpawnCheckInterval = 10f;
+
     // Animator
     [SerializeField] private Animator playerAnimator;
 
@@ -22,7 +26,7 @@ public class FishingGameManager : MonoBehaviour
     private FishingGameState currentState;
 
 
-    // Internal parameters
+    // Internal references
     private Fish currentFishBelow = null;
     private IngredientSO pendingLoot = null;
 
@@ -121,7 +125,7 @@ public class FishingGameManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(GameManager.Instance.MonsterSpawnCheckInterval);
+            yield return new WaitForSeconds(monsterSpawnCheckInterval);
 
             // The first night, the tutorial monster appears always after the first interval
             if (GameManager.Instance.IsFirstNight)
@@ -129,7 +133,7 @@ public class FishingGameManager : MonoBehaviour
                 GameManager.Instance.EnterMonsterView();
             }
             // The other nights, a monster can appear with a monsterSpawnChance at each interval
-            else if (Random.Range(0, 100) <= GameManager.Instance.MonsterSpawnChance)
+            else if (Random.Range(0, 100) <= monsterSpawnChance)
             {
                 GameManager.Instance.EnterMonsterView();
             }

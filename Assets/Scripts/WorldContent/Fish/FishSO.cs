@@ -18,18 +18,12 @@ public class FishCatchingDifficulty
 {
     public TimeOfDaySO time; // Day or night
 
-    public float safeZoneMoveSpeed = 100f;
-    public float requiredTimeInsideZone = 2f;
-    public float allowedTimeOutsideZone = 3f;
-    public float safeZoneWidth = 150f;
+    public float safeZoneMoveSpeed;
+    public float requiredTimeInsideZone;
+    public float allowedTimeOutsideZone;
+    public float safeZoneWidth;
 
-    // Default constructor
-    public FishCatchingDifficulty(TimeOfDaySO time)
-    {
-        this.time = time;
-    }
-
-    // Constructor with difficulty parameters
+    // Constructor
     public FishCatchingDifficulty(TimeOfDaySO time, float safeZoneMoveSpeed, float requiredTimeInsideZone, float allowedTimeOutsideZone, float safeZoneWidth)
     {
         this.time = time;

@@ -30,26 +30,6 @@ public class InventoryViewUIManager : MonoBehaviour
     [SerializeField] private Image[] ingredientImages;
     [SerializeField] private TextMeshProUGUI[] ingredientTexts;
 
-    // Internal references
-    private string[] fishingRodDetails =
-    {
-        "No special effect",
-        "Green zone width increased",
-        "Fish are caught more quickly"
-    };
-    private string[] boatDetails =
-    {
-        "No special effect",
-        "Boat speed increased",
-        "Higher chances of rare fish appearing"
-    };
-    private string[] flashlightDetails =
-    {
-        "No special effect",
-        "...",
-        "..."
-    };
-
     // Make this class a singleton
     private void Awake()
     {
@@ -66,21 +46,63 @@ public class InventoryViewUIManager : MonoBehaviour
     public void UpdateFishingRodUI(int level)
     {
         fishingRodLevelText.text = "Level " + level;
-        fishingRodDetailsText.text = fishingRodDetails[level - 1];
+
+        var details = GameManager.Instance.PlayerEquipmentRegistry.fishingRodSO.detailsPerLevel;
+        if (level == 1)
+        {
+            fishingRodDetailsText.text = details[0];
+        }
+        else if (level == 2)
+        {
+            fishingRodDetailsText.text = details[1];
+        }
+        else if (level == 3)
+        {
+            fishingRodDetailsText.fontSize = 45f;
+            fishingRodDetailsText.text = details[1] + "\n" + details[2];
+        }
     }
 
     // Update the boat UI
     public void UpdateBoatUI(int level)
     {
         boatLevelText.text = "Level " + level;
-        boatDetailsText.text = boatDetails[level - 1];
+
+        var details = GameManager.Instance.PlayerEquipmentRegistry.boatSO.detailsPerLevel;
+        if (level == 1)
+        {
+            boatDetailsText.text = details[0];
+        }
+        else if (level == 2)
+        {
+            boatDetailsText.text = details[1];
+        }
+        else if (level == 3)
+        {
+            boatDetailsText.fontSize = 45f;
+            boatDetailsText.text = details[1] + "\n" + details[2];
+        }
     }
 
     // Update the flashlight UI
     public void UpdateFlashlightUI(int level)
     {
         flashinglightLevelText.text = "Level " + level;
-        flashinglightDetailsText.text = flashlightDetails[level - 1];
+
+        var details = GameManager.Instance.PlayerEquipmentRegistry.flashlightSO.detailsPerLevel;
+        if (level == 1)
+        {
+            flashinglightDetailsText.text = details[0];
+        }
+        else if (level == 2)
+        {
+            flashinglightDetailsText.text = details[1];
+        }
+        else if (level == 3)
+        {
+            flashinglightDetailsText.fontSize = 45f;
+            flashinglightDetailsText.text = details[1] + "\n" + details[2];
+        }
     }
 
     // Update the ingredients UI

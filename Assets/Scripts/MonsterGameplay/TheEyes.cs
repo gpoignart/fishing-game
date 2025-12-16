@@ -56,7 +56,7 @@ public class TheEyes : MonoBehaviour
             yield return null;
         }
 
-        // 4) End encounter
+        // End encounter
         MonsterGameManager.Instance.PlayerWin();
     }
 }

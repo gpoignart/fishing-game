@@ -118,6 +118,7 @@ public class RecipeBookUIManager : MonoBehaviour
         if (currentRecipeAvailableCode == 0)
         {
             makeRecipeButton.interactable = true;
+            instructionText.text = "";
         }
         else if (currentRecipeAvailableCode == 1)
         {

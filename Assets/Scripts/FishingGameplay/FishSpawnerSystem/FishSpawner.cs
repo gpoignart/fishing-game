@@ -16,12 +16,14 @@ public class FishSpawner : MonoBehaviour
     [SerializeField]
     private Transform fishContainer;
 
-    [SerializeField] private int minFish = 3;
-    [SerializeField] private int maxFish = 7;
-    [SerializeField] private int targetFishCount = 5;
-    [SerializeField] private float updateInterval = 5f;
-    [SerializeField] private float minDistBetweenFish = 2f;
+    // Parameters
+    private int minFish = 3;
+    private int maxFish = 7;
+    private int targetFishCount = 5;
+    private float updateInterval = 5f;
+    private float minDistBetweenFish = 2f;
 
+    // Internal references
     private Vector2 zoneSize;
     private Vector2 zoneOffset;
 

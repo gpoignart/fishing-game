@@ -24,7 +24,7 @@ public class MonsterGameManager : MonoBehaviour
 
     private GameObject currentMonster;
 
-    private float loseTime = 3f;      
+    private float loseTime = 5f;
     private float loseTimer = 0f;
     private bool encounterActive = false;
 
@@ -73,7 +73,6 @@ public class MonsterGameManager : MonoBehaviour
         return new Vector3(x, y, 0f);
     }
 
-   
     public void PlayerWin()
     {
         encounterActive = false;
@@ -84,11 +83,5 @@ public class MonsterGameManager : MonoBehaviour
     {
         encounterActive = false;
         GameManager.Instance.DeathAgainstMonster();
-    }
-
-    
-    public void EndEncounter()
-    {
-        PlayerWin();
     }
 }

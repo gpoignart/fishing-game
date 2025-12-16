@@ -100,8 +100,7 @@ public class FlashlightController : MonoBehaviour
     }
 
 
-    //Public function called by MonsterGameManager
-  
+    // Public function called by MonsterGameManager
     public void SetMonster(Transform t)
     {
         monsterTransform = t;

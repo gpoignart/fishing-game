@@ -30,11 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TransitionRegistry transitionRegistry;
 
-    // Parameters
-    private int monsterSpawnChance = 70;
-    private float monsterSpawnCheckInterval = 10f;
-
-    // Internal attributes
+    // Attributes
     private MapSO currentMap;
     private TimeOfDaySO currentTimeOfDay;
     private TransitionSO currentTransition;
@@ -46,7 +42,6 @@ public class GameManager : MonoBehaviour
     private bool isFishingTutorialEnabled;
     private bool isMapSelectionExplanationEnabled;
     private bool isRecipeBookUnlocked;
-    private Dictionary<IngredientSO, int> obtainedIngredientLastDayAndNight;
 
     // READ-ONLY ATTRIBUTES, CAN BE READ ANYWHERE
     public TimeOfDayRegistry TimeOfDayRegistry => timeOfDayRegistry;
@@ -67,8 +62,9 @@ public class GameManager : MonoBehaviour
     public bool IsFishingTutorialEnabled => isFishingTutorialEnabled;
     public bool IsMapSelectionExplanationEnabled => isMapSelectionExplanationEnabled;
     public bool IsRecipeBookUnlocked => isRecipeBookUnlocked;
-    public int MonsterSpawnChance => monsterSpawnChance;
-    public float MonsterSpawnCheckInterval => monsterSpawnCheckInterval;
+
+    // Internal attributes    
+    private Dictionary<IngredientSO, int> obtainedIngredientLastDayAndNight;
 
     // Internal game states
     private enum GameState
@@ -109,7 +105,7 @@ public class GameManager : MonoBehaviour
         mapRegistry.Initialize();
         playerEquipmentRegistry.Initialize();
         ingredientRegistry.Initialize();
-        recipeRegistry.Initialize();
+        recipeRegistry.Initialize(); // RecipeRegistry must be initialized after playerEquipmentRegistry and ingredientsRegistry
         fishRegistry.Initialize();
         transitionRegistry.Initialize();
 
@@ -295,7 +291,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    // INVENTORY FUNCTIONS
+    // INVENTORY & EQUIPMENT FUNCTIONS
 
     // Called to add ingredient to inventory and in the temporary ingredients dictionary
     public void AddIngredient(IngredientSO ingredient, int amount)
@@ -318,9 +314,9 @@ public class GameManager : MonoBehaviour
     }
 
     // Called when upgrading equipment
-    public void UpgradeEquipment(PlayerEquipmentSO playerEquipment)
+    public void UpgradeEquipment(PlayerEquipmentSO playerEquipment, int newLevel)
     {
-        playerEquipment.level++;
+        playerEquipment.UpgradeTo(newLevel);
     }
 
 

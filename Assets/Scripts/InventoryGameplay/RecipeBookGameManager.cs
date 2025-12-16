@@ -135,7 +135,7 @@ public class RecipeBookGameManager : MonoBehaviour
             }
 
             // Upgrade equipment
-            GameManager.Instance.UpgradeEquipment(recipe.upgradesEquipment);
+            GameManager.Instance.UpgradeEquipment(recipe.upgradesEquipment, recipe.upgradesToLevel);
 
             // Recipe used
             recipe.hasAlreadyBeenUsed = true;

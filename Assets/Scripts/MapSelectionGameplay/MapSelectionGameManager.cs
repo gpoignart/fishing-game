@@ -5,10 +5,7 @@ public class MapSelectionGameManager : MonoBehaviour
     // Allow to call MapSelectionGameManager.Instance anywhere (singleton)
     public static MapSelectionGameManager Instance { get; private set; }
 
-    // Internal reference
-    private MapSO[] maps = GameManager.Instance.MapRegistry.AllMaps;
-
-    // Explanation internal references
+    // Internal references
     private string[] explanationTexts =
     {
         "Here's the global map. At the beginning of each day and each night, you must choose a place to fish.",
@@ -33,9 +30,9 @@ public class MapSelectionGameManager : MonoBehaviour
     private void Start()
     {
         MapSelectionUIManager.Instance.HideExplanationPanel();
-        for (int i = 0; i < maps.Length; i++)
+        for (int i = 0; i < GameManager.Instance.MapRegistry.AllMaps.Length; i++)
         {
-            MapSelectionUIManager.Instance.UpdateMapButtonText(i, maps[i].mapName);
+            MapSelectionUIManager.Instance.UpdateMapButtonText(i, GameManager.Instance.MapRegistry.AllMaps[i].mapName);
         }
         MapSelectionUIManager.Instance.UpdateDayAndNightCounterText();
 
@@ -62,21 +59,21 @@ public class MapSelectionGameManager : MonoBehaviour
     public void OnMapButton1Pressed()
     {
         if (GameManager.Instance.IsMapSelectionExplanationEnabled) { return; }
-        GameManager.Instance.SelectMap(maps[0]);
+        GameManager.Instance.SelectMap(GameManager.Instance.MapRegistry.AllMaps[0]);
     }
 
     // Called when the player clicks map button 2
     public void OnMapButton2Pressed()
     {
         if (GameManager.Instance.IsMapSelectionExplanationEnabled) { return; }
-        GameManager.Instance.SelectMap(maps[1]);
+        GameManager.Instance.SelectMap(GameManager.Instance.MapRegistry.AllMaps[1]);
     }
 
     // Called when the player clicks map button 3
     public void OnMapButton3Pressed()
     {
         if (GameManager.Instance.IsMapSelectionExplanationEnabled) { return; }
-        GameManager.Instance.SelectMap(maps[2]);
+        GameManager.Instance.SelectMap(GameManager.Instance.MapRegistry.AllMaps[2]);
     }
 
     // Called when the player clicks inventory button

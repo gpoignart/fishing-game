@@ -8,6 +8,7 @@ public abstract class FishSO : ScriptableObject
     public TimeOfDaySO[] spawnTimes;
     public IngredientSO[] drops;
     public int spawnChance;
+    public float staySpawnedTime;
     public FishCatchingDifficulty[] catchingDifficulties;
 
     public abstract void Initialize();

@@ -1,5 +1,6 @@
+using System.Collections;
 using UnityEngine;
-
+using UnityEngine.UI;
 using System.Linq;
 
 public class FishSpawner : MonoBehaviour
@@ -17,11 +18,13 @@ public class FishSpawner : MonoBehaviour
     private Transform fishContainer;
 
     // Parameters
+    private float minDistBetweenFish = 2f;
     private int minFish = 3;
     private int maxFish = 7;
     private int targetFishCount = 5;
-    private float updateInterval = 5f;
-    private float minDistBetweenFish = 2f;
+    private float targetRecheckDelay = 1f;
+    private float minSpawnDelay = 1f;
+    private float maxSpawnDelay = 3f;
 
     // Internal references
     private Vector2 zoneSize;
@@ -51,11 +54,9 @@ public class FishSpawner : MonoBehaviour
         Vector2 spawnPosition = (Vector2) spawnZone.transform.position + localPoint;
 
         // Tutorial fish
-        FishSO tutorialFish = GameManager.Instance.FishRegistry.carpSO;
-
-        GameObject newFish = Instantiate(fishPrefab, spawnPosition, Quaternion.identity, fishContainer);
-        
-        newFish.GetComponent<Fish>().fishSO = tutorialFish;
+        GameObject tutorialFish = Instantiate(fishPrefab, spawnPosition, Quaternion.identity, fishContainer);
+        tutorialFish.GetComponent<Fish>().fishSO = GameManager.Instance.FishRegistry.carpSO;
+        tutorialFish.GetComponent<Fish>().DisableLifeTimeRoutine(); // The tutorialFish don't despawn naturally
     }
 
     // Regular fish spawner
@@ -64,23 +65,45 @@ public class FishSpawner : MonoBehaviour
         zoneSize = spawnZone.size;
         zoneOffset = spawnZone.offset;
 
-        InvokeRepeating(nameof(ManageFishCount), 0f, updateInterval);
+        // Immediate spawn
+        SpawnInitialFishes();
+
+        // Further spawns
+        StartCoroutine(FishSpawnerLoop());
     }
 
-    private void ManageFishCount()
+    private void SpawnInitialFishes()
     {
-        int currentFishCount = fishContainer.childCount;
-
-        // Add fish if we don't have enough to reach the targetFishCount
-        if (currentFishCount < targetFishCount)
+        while (fishContainer.childCount < targetFishCount)
         {
-            int fishToSpawn = targetFishCount - currentFishCount;
-            for (int i = 0; i < fishToSpawn; i++)
-                SpawnFish();
+            SpawnFish();
         }
+    }
 
-        // Change randomly the targetFishCount
-        targetFishCount = Random.Range(minFish, maxFish + 1);
+    private IEnumerator FishSpawnerLoop()
+    {
+        while (true)
+        {
+            int currentFishCount = fishContainer.childCount;
+
+            // Add fish if we don't have enough to reach the targetFishCount
+            if (currentFishCount < targetFishCount)
+            {
+                SpawnFish();
+
+                // Random spawn delay
+                float spawnDelay = Random.Range(minSpawnDelay, maxSpawnDelay);
+                yield return new WaitForSeconds(spawnDelay);
+            }
+            else
+            {
+                // Wait till less fish
+                yield return new WaitForSeconds(targetRecheckDelay);
+
+                // New target fish count
+                targetFishCount = Random.Range(minFish, maxFish + 1);
+            }
+        }
     }
 
     private void SpawnFish()

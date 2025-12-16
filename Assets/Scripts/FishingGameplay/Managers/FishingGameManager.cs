@@ -196,6 +196,7 @@ public class FishingGameManager : MonoBehaviour
         if (GameManager.Instance.IsFishingTutorialEnabled && currentTutorialState < FishingTutorialState.Hook) { return; }
         if (GameManager.Instance.IsFishingTutorialEnabled && currentTutorialState == FishingTutorialState.Hook) { ChangeTutorialState(FishingTutorialState.Fishing); }
 
+        currentFishBelow.DisableLifeTimeRoutine(); // When we hook a fish, he won't disapear naturally
         ChangeState(FishingGameState.Fishing);
     }
 

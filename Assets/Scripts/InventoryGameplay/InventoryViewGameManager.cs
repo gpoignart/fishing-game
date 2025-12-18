@@ -40,16 +40,16 @@ public class InventoryViewGameManager : MonoBehaviour
         GameManager.Instance.ExitInventory();
     }
 
-    // Toggle between Inventory and Recipe book
-    public void OnChangeStateButtonPressed()
+    // See Inventory
+    public void OnSeeInventoryButtonPressed()
     { 
-        if (currentState == InventoryViewGameState.Inventory)
-        {
-            ChangeState(InventoryViewGameState.RecipeBook);
-        } else
-        {
-            ChangeState(InventoryViewGameState.Inventory);
-        }
+        ChangeState(InventoryViewGameState.Inventory);
+    }
+
+    // See Recipe Book
+    public void OnSeeRecipeBookButtonPressed()
+    { 
+        ChangeState(InventoryViewGameState.RecipeBook);
     }
 
     // Pass from one state to another

@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
     public void StartNewGame()
     {
         SaveSystem.DeleteSave();
+        Start();
 
         currentEvent = EventRegistry.introductionSO;
         ChangeState(GameState.EventView);
@@ -179,6 +180,7 @@ public class GameManager : MonoBehaviour
             isRecipeBookUnlocked = true;
             currentTransition = transitionRegistry.endRecipeBookEventSO;
             ChangeState(GameState.TransitionView); // Next state is in the ExitTransition function
+            SaveAndChangeCurrentTimeOfDay();
         }
         else if (currentEvent == eventRegistry.endSO)
         {
@@ -263,8 +265,6 @@ public class GameManager : MonoBehaviour
         {
             currentEvent = EventRegistry.recipeBookObtentionSO;
             ChangeState(GameState.EventView);
-
-            ChangeCurrentTimeOfDay();
         }
         else
         {
@@ -292,7 +292,7 @@ public class GameManager : MonoBehaviour
             ChangeState(GameState.TransitionView); // Next state is in the ExitTransition function
 
             // The next day start
-            ChangeCurrentTimeOfDay();
+            SaveAndChangeCurrentTimeOfDay();
         }
     }
 
@@ -311,7 +311,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Change the time of day
-        ChangeCurrentTimeOfDay();
+        SaveAndChangeCurrentTimeOfDay();
     }
 
     // Called in the InventoryView when the player make the final remedy
@@ -444,7 +444,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ChangeCurrentTimeOfDay()
+    private void SaveAndChangeCurrentTimeOfDay()
     {
         if (currentTimeOfDay == TimeOfDayRegistry.daySO)
         {

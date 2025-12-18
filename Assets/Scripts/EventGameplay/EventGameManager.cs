@@ -46,13 +46,15 @@ public class EventGameManager : MonoBehaviour
     {
         indexOfText ++;
         
-        if (indexOfText == numberOfLines)
+        if (indexOfText >= numberOfLines)
         {
             GameManager.Instance.ExitEvent();
         }
-
-        EventUIManager.Instance.UpdateText(GameManager.Instance.CurrentEvent.eventLines[indexOfText].text);
-        EventUIManager.Instance.UpdateBackgroundImage(GameManager.Instance.CurrentEvent.eventLines[indexOfText].backgroundImage);
+        else
+        {
+            EventUIManager.Instance.UpdateText(GameManager.Instance.CurrentEvent.eventLines[indexOfText].text);
+            EventUIManager.Instance.UpdateBackgroundImage(GameManager.Instance.CurrentEvent.eventLines[indexOfText].backgroundImage);
+        }
     }
 
 }

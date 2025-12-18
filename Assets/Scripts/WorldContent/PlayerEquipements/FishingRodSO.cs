@@ -11,7 +11,7 @@ public class FishingRodSO : PlayerEquipmentSO
         {
             "No bonus",
             "Increases green zone width",
-            "Decreases time inside green zone needed"
+            "Decreases needed time in green zone"
         };
     }
 

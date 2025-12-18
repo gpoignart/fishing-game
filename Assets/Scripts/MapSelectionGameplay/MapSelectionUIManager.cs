@@ -34,11 +34,11 @@ public class MapSelectionUIManager : MonoBehaviour
     {
         if (GameManager.Instance.CurrentTimeOfDay == GameManager.Instance.TimeOfDayRegistry.daySO)
         {
-            dayAndNightCounterText.text = $"Day {GameManager.Instance.DaysCount}";
+            dayAndNightCounterText.text = $"DAY {GameManager.Instance.DaysCount}";
         }
         else
         {
-            dayAndNightCounterText.text = $"Night {GameManager.Instance.NightsCount}";
+            dayAndNightCounterText.text = $"NIGHT {GameManager.Instance.NightsCount}";
         }
     }
 

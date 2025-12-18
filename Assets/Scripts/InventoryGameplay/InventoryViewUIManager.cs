@@ -13,8 +13,8 @@ public class InventoryViewUIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI pageText;
 
-    [SerializeField] private GameObject changeStateButton;
-    [SerializeField] private TextMeshProUGUI changeStateButtonText;
+    [SerializeField] private GameObject recipeBookUnavailableImage;
+    [SerializeField] private GameObject seeRecipeBookButton;
 
     [SerializeField] private TextMeshProUGUI fishingRodLevelText;
     [SerializeField] private TextMeshProUGUI boatLevelText;
@@ -118,12 +118,13 @@ public class InventoryViewUIManager : MonoBehaviour
         pageText.text = "Inventory";
         if (GameManager.Instance.IsRecipeBookUnlocked)
         {
-            changeStateButton.SetActive(true);
-            changeStateButtonText.text = "Recipe Book";
+            seeRecipeBookButton.SetActive(true);
+            recipeBookUnavailableImage.SetActive(false);
         }
         else
         {
-            changeStateButton.SetActive(false);
+            seeRecipeBookButton.SetActive(false);
+            recipeBookUnavailableImage.SetActive(true);
         }
     }
 
@@ -133,8 +134,6 @@ public class InventoryViewUIManager : MonoBehaviour
         recipeBookPanel.SetActive(true);
         pageText.gameObject.SetActive(true);
         pageText.text = "Recipe Book";
-        changeStateButton.SetActive(true);
-        changeStateButtonText.text = "Inventory";
     }
 
     // Hide the UI for the Inventory state
@@ -142,7 +141,6 @@ public class InventoryViewUIManager : MonoBehaviour
     {
         inventoryPanel.SetActive(false);
         pageText.gameObject.SetActive(false);
-        changeStateButton.SetActive(false);
     }
 
     // Hide the UI for the Recipe Book state
@@ -150,6 +148,5 @@ public class InventoryViewUIManager : MonoBehaviour
     {
         recipeBookPanel.SetActive(false);
         pageText.gameObject.SetActive(false);
-        changeStateButton.SetActive(false);
     }
 }

@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TransitionView.unity
     guid: a3ec835baae75f7479c7fc78ca0cbde6
   - enabled: 1
+    path: Assets/Scenes/EndScreenView.unity
+    guid: 30149e00aba0c6a4390370fbb4ab32de
+  - enabled: 1
     path: Assets/Scenes/EventView.unity
     guid: bb44ee606ff335c4386dd6ab47bb1483
   m_configObjects: {}

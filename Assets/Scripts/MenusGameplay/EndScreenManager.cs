@@ -24,7 +24,7 @@ public class EndScreenManager : MonoBehaviour
 
     private void Start()
     {
-        endText.text = "You finished the story in " + GameManager.Instance.DaysCount + " days.\nThe lake is calm. The curse is broken.\nYou could start again… try to do better, faster.\nBut think twice.\nStarting over would mean pulling the fisherman back into the curse.\nBack into the sleepless nights.\nBack into the waiting.\nMaybe, some endings should be left untouched.";
+        endText.text = "Congratulations, you finished the story in " + GameManager.Instance.DaysCount + " days.\nThe lake is calm. The curse is broken.\nYou could start again… try to do better, faster.\nBut think twice.\nStarting over would mean pulling the fisherman back into the curse.\nBack into the sleepless nights.\nBack into the waiting.\nMaybe, some endings should be left untouched.";
     }
 
     public void OnRestartButtonPressed()

@@ -982,10 +982,15 @@ MonoBehaviour:
   fishingNightMusic: {fileID: 8300000, guid: f27585887f2d6564489e30d9c605154b, type: 3}
   monsterMusic: {fileID: 8300000, guid: 35cf2b1b4b2ad284d90e7e95f02dfebd, type: 3}
   catchingFish: {fileID: 8300000, guid: 9a6431284fb0b10468c28760631d039b, type: 3}
+  catchingRareFish: {fileID: 8300000, guid: aa3e4b2a04aeea44e8f3f19b4e481a8c, type: 3}
+  fishSwamAway: {fileID: 8300000, guid: 771c9aa1140250c49a35037fbca1ccba, type: 3}
   monsterRanAway: {fileID: 8300000, guid: f598849d3c2bab74886f975de3a81491, type: 3}
   monsterScreamLeft: {fileID: 8300000, guid: 748b59bee25137540b0405a17db443ea, type: 3}
   monsterScreamRight: {fileID: 8300000, guid: a770975f7d0d05f4aaceb0edb8718f32, type: 3}
+  monsterGotPlayer: {fileID: 8300000, guid: c37984dede22bf24b8104202c8e6cf56, type: 3}
   makeRecipe: {fileID: 8300000, guid: d08172ab8a334f04592dd635f05c5d3a, type: 3}
+  endDay: {fileID: 8300000, guid: c0e185b7c470d0249a248e87661cc946, type: 3}
+  endNight: {fileID: 8300000, guid: 7ca32648b3c11e94bb995a721a41d416, type: 3}
 --- !u!1 &1216056134
 GameObject:
   m_ObjectHideFlags: 0

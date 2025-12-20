@@ -19,7 +19,7 @@ public class FishingUIManager : MonoBehaviour
     private SpriteRenderer lakeFloorSpriteRenderer;
 
     [SerializeField]
-    private GameObject inventoryButton;
+    private Button inventoryButton;
 
     [SerializeField]
     private GameObject timer;
@@ -192,12 +192,22 @@ public class FishingUIManager : MonoBehaviour
     // Inventory button
     public void ShowInventoryButton()
     {
-        inventoryButton.SetActive(true);
+        inventoryButton.gameObject.SetActive(true);
     }
 
     public void HideInventoryButton()
     {
-        inventoryButton.SetActive(false);
+        inventoryButton.gameObject.SetActive(false);
+    }
+    
+    public void AbleInventoryButton()
+    {
+        inventoryButton.interactable = true;
+    }
+
+    public void DisableInventoryButton()
+    {
+        inventoryButton.interactable = false;
     }
 
     // Timer

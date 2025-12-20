@@ -18,10 +18,15 @@ public class AudioManager : MonoBehaviour
 
     // Sound effects
     [SerializeField] private AudioClip catchingFish;
+    [SerializeField] private AudioClip catchingRareFish;
+    [SerializeField] private AudioClip fishSwamAway;
     [SerializeField] private AudioClip monsterRanAway;
     [SerializeField] private AudioClip monsterScreamLeft;
     [SerializeField] private AudioClip monsterScreamRight;
+    [SerializeField] private AudioClip monsterGotPlayer;
     [SerializeField] private AudioClip makeRecipe;
+    [SerializeField] private AudioClip endDay;
+    [SerializeField] private AudioClip endNight;
 
     // Parameters
     private float musicFadeDuration = 0.5f;
@@ -53,6 +58,9 @@ public class AudioManager : MonoBehaviour
         sfxSource.playOnAwake = false;
         sfxSource.loop = false;
     }
+
+
+    // Music functions
 
     public void PlayMenuAndEventMusic()
     {
@@ -95,6 +103,9 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(FadeOutAndStop());
     }
 
+
+    // SFX functions
+
     public void PlayMonsterScreamLeftSFX()
     {
         PlaySFX(monsterScreamLeft);
@@ -110,14 +121,39 @@ public class AudioManager : MonoBehaviour
         PlaySFX(monsterRanAway);
     }
 
+    public void PlayerMonsterGotPlayerSFX()
+    {
+        PlaySFX(monsterGotPlayer);
+    }
+
     public void PlayCatchingFishSFX()
     {
         PlaySFX(catchingFish);
     }
 
+    public void PlayCatchingRareFishSFX()
+    {
+        PlaySFX(catchingRareFish);
+    }
+
     public void PlayMakeRecipeSFX()
     {
         PlaySFX(makeRecipe);
+    }
+
+    public void PlayFishSwamAwaySFX()
+    {
+        PlaySFX(fishSwamAway);
+    }
+
+    public void PlayEndDaySFX()
+    {
+        PlaySFX(endDay);
+    }
+
+    public void PlayEndNightSFX()
+    {
+        PlaySFX(endNight);
     }
 
 

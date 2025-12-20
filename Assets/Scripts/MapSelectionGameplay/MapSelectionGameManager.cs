@@ -40,6 +40,7 @@ public class MapSelectionGameManager : MonoBehaviour
         if (GameManager.Instance.IsMapSelectionExplanationEnabled)
         {
             indexOfExplanation = 0;
+            MapSelectionUIManager.Instance.DisableMapSelectionButtons();
             MapSelectionUIManager.Instance.HideChooseAMapText();
             MapSelectionUIManager.Instance.ShowExplanationPanel();
             MapSelectionUIManager.Instance.UpdateExplanationText(explanationTexts[indexOfExplanation]);
@@ -58,21 +59,18 @@ public class MapSelectionGameManager : MonoBehaviour
     // Called when the player clicks map button 1
     public void OnMapButton1Pressed()
     {
-        if (GameManager.Instance.IsMapSelectionExplanationEnabled) { return; }
         GameManager.Instance.SelectMap(GameManager.Instance.MapRegistry.AllMaps[0]);
     }
 
     // Called when the player clicks map button 2
     public void OnMapButton2Pressed()
     {
-        if (GameManager.Instance.IsMapSelectionExplanationEnabled) { return; }
         GameManager.Instance.SelectMap(GameManager.Instance.MapRegistry.AllMaps[1]);
     }
 
     // Called when the player clicks map button 3
     public void OnMapButton3Pressed()
     {
-        if (GameManager.Instance.IsMapSelectionExplanationEnabled) { return; }
         GameManager.Instance.SelectMap(GameManager.Instance.MapRegistry.AllMaps[2]);
     }
 
@@ -97,6 +95,7 @@ public class MapSelectionGameManager : MonoBehaviour
         // If last explanation, all others buttons availables, and we hide the next button
         if (indexOfExplanation == explanationTexts.Length - 1)
         {
+            MapSelectionUIManager.Instance.AbleMapSelectionButtons();
             MapSelectionUIManager.Instance.HideExplanationNextButton();
             GameManager.Instance.EndOfMapSelectionExplanation();
         }

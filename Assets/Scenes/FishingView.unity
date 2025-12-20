@@ -3113,7 +3113,7 @@ MonoBehaviour:
   skySpriteRenderer: {fileID: 689010968}
   underwaterSpriteRenderer: {fileID: 1526973864}
   lakeFloorSpriteRenderer: {fileID: 144611001}
-  inventoryButton: {fileID: 2123384923}
+  inventoryButton: {fileID: 2123384925}
   timer: {fileID: 1765606671}
   timerText: {fileID: 1594784657}
   hookButton: {fileID: 1631360497}

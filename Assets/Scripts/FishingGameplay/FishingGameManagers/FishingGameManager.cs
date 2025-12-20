@@ -7,12 +7,6 @@ public class FishingGameManager : MonoBehaviour
     // Allow to call FishingGameManager.Instance anywhere (singleton)
     public static FishingGameManager Instance { get; private set; }
 
-
-    // Parameters
-    private int monsterSpawnChance = 50;
-    private float monsterSpawnCheckInterval = 10f;
-
-
     // Internal states
     private enum FishingGameState
     {
@@ -22,11 +16,9 @@ public class FishingGameManager : MonoBehaviour
     }
     private FishingGameState currentState;
 
-
     // Internal references
     private Fish currentFishBelow = null;
     private IngredientSO pendingLoot = null;
-
 
     // Tutorial states
     private enum FishingTutorialState
@@ -69,9 +61,6 @@ public class FishingGameManager : MonoBehaviour
 
         // Start the fish spawner if not in tutorial
         if (!GameManager.Instance.IsFishingTutorialEnabled) { FishSpawner.Instance.StartFishSpawner(); }
-
-        // Start the monster spawn loop at night
-        if (GameManager.Instance.CurrentTimeOfDay == GameManager.Instance.TimeOfDayRegistry.nightSO) { StartCoroutine(MonsterSpawnLoop()); }
 
         // First state
         ChangeState(FishingGameState.Moving);
@@ -116,49 +105,6 @@ public class FishingGameManager : MonoBehaviour
                 break;
         }
     }
-
-    // All the monsterSpawnCheckInterval, try to spawn a monster with a monsterSpawnChance
-    private IEnumerator MonsterSpawnLoop()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(monsterSpawnCheckInterval);
-
-            // The first night, the tutorial monster appears always after the first interval
-            if (GameManager.Instance.IsFirstNight)
-            {
-                // Right side for the tutorial
-                GameManager.Instance.UpdateMonsterSideApparition(1);
-
-                // Play sfx
-                AudioManager.Instance.PlayMonsterScreamRightSFX();
-                yield return new WaitForSeconds(1f);
-
-                GameManager.Instance.EnterMonsterView();
-            }
-            // The other nights, a monster can appear with a monsterSpawnChance at each interval
-            else if (Random.Range(0, 100) <= monsterSpawnChance)
-            {
-                // Choose monster apparition side
-                int side = Random.Range(0, 2);
-                GameManager.Instance.UpdateMonsterSideApparition(side);
-
-                // Play sfx
-                if (side == 0)
-                {
-                    AudioManager.Instance.PlayMonsterScreamLeftSFX();
-                }
-                else
-                {
-                    AudioManager.Instance.PlayMonsterScreamRightSFX();
-                }
-                yield return new WaitForSeconds(1f);
-
-                GameManager.Instance.EnterMonsterView();
-            }
-        }
-    }
-
 
     // Called by the PlayerController if the player has moved
     public void PlayerHasMoved()
@@ -262,14 +208,21 @@ public class FishingGameManager : MonoBehaviour
         StartCoroutine(PlayerController.Instance.OnCatchAnimation(1.5f));
 
         // Play catching sfx
-        AudioManager.Instance.PlayCatchingFishSFX();
+        if (currentFishBelow.fishSO == GameManager.Instance.FishRegistry.midnightCatfishSO || currentFishBelow.fishSO == GameManager.Instance.FishRegistry.mysticFishSO)
+        {
+            AudioManager.Instance.PlayCatchingRareFishSFX();
+        }
+        else
+        {
+            AudioManager.Instance.PlayCatchingFishSFX();
+        }
 
         // Show the loot for a few seconds if not in tutorial
         if (!GameManager.Instance.IsFishingTutorialEnabled)
         {
             StartCoroutine(FishingUIManager.Instance.ShowLootForSeconds(pendingLoot, 1f, 0.25f));
         }
-        // Change to loot if in tutorial state (must do after obtained the ingredient)
+        // Next step if in tutorial state (must do after obtained the ingredient)
         else if (GameManager.Instance.IsFishingTutorialEnabled && currentTutorialState == FishingTutorialState.Fishing)
         {
             ChangeTutorialState(FishingTutorialState.Loot);
@@ -287,6 +240,9 @@ public class FishingGameManager : MonoBehaviour
         if (GameManager.Instance.IsFishingTutorialEnabled && currentTutorialState <= FishingTutorialState.Fishing) { return; }
 
         ChangeState(FishingGameState.Moving);
+
+        // Play lose fish SFX
+        AudioManager.Instance.PlayFishSwamAwaySFX();
 
         // Show the loseFishText
         StartCoroutine(FishingUIManager.Instance.ShowLoseFishTextForSeconds(1.5f, 0.25f));
@@ -446,6 +402,7 @@ public class FishingGameManager : MonoBehaviour
             case FishingTutorialState.End:
                 FishingUIManager.Instance.ShowTimer();
                 FishingUIManager.Instance.ShowInventoryButton();
+                FishingUIManager.Instance.AbleInventoryButton();
                 FishingUIManager.Instance.ShowCommandsPanel();
                 FishingUIManager.Instance.HideTutorialPanel();
                 break;
@@ -461,6 +418,7 @@ public class FishingGameManager : MonoBehaviour
                 tutorialFishHasSpawned = false;
                 FishingUIManager.Instance.HideTimer();
                 FishingUIManager.Instance.HideInventoryButton();
+                FishingUIManager.Instance.DisableInventoryButton();
                 FishingUIManager.Instance.HideCommandsPanel();
                 break;
 

@@ -12,6 +12,7 @@ public class MapSelectionUIManager : MonoBehaviour
     [SerializeField] private GameObject explanationPanel;
     [SerializeField] private TextMeshProUGUI explanationText;
     [SerializeField] private GameObject explanationNextButton;
+    [SerializeField] private CanvasGroup mapSelectionButtons;
     
     // Make this class a singleton
     private void Awake()
@@ -65,5 +66,15 @@ public class MapSelectionUIManager : MonoBehaviour
     public void HideExplanationNextButton()
     {
         explanationNextButton.SetActive(false);
+    }
+
+    public void DisableMapSelectionButtons()
+    {
+        mapSelectionButtons.interactable = false;
+    }
+
+    public void AbleMapSelectionButtons()
+    {
+        mapSelectionButtons.interactable = true;
     }
 }

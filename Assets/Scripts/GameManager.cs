@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // World content
-    [SerializeField]    
+    [SerializeField]
     private TimeOfDayRegistry timeOfDayRegistry;
 
     [SerializeField]
@@ -83,8 +83,8 @@ public class GameManager : MonoBehaviour
     private Vector2 defaultFishingPlayerPosition;
     private Vector2 defaultFishingPlayerOrientation;
 
-    // Internal game states
-    private enum GameState
+    // Internal game views
+    private enum GameView
     {
         Main,
         EventView,
@@ -95,8 +95,8 @@ public class GameManager : MonoBehaviour
         MonsterView,
         EndScreenView
     }
-    private GameState lastState;
-    private GameState currentState;
+    private GameView lastView;
+    private GameView currentView;
 
     // Make this class a singleton
     private void Awake()
@@ -115,7 +115,10 @@ public class GameManager : MonoBehaviour
 
     // Start the game mecanisms loop (called when the game start)
     private void Start()
-    {        
+    {
+        // First view
+        ChangeView(GameView.Main);
+
         // Initialize internal references
         InitializeObtainedIngredientsLastDayAndNight();
         defaultFishingPlayerPosition = new Vector2(2f, 2.8f);
@@ -152,7 +155,7 @@ public class GameManager : MonoBehaviour
     // Called by map selection to entering menu
     public void EnterMenu()
     {
-        ChangeState(GameState.Main);
+        ChangeView(GameView.Main);
     }
 
     // Called by the menu manager to start a new game
@@ -162,14 +165,14 @@ public class GameManager : MonoBehaviour
         Start();
 
         currentEvent = EventRegistry.introductionSO;
-        ChangeState(GameState.EventView);
+        ChangeView(GameView.EventView);
     }
 
     // Called by the menu manager to continue game
     public void ContinueGame()
     {
         LoadGame();
-        ChangeState(GameState.MapSelectionView);
+        ChangeView(GameView.MapSelectionView);
     }
 
     // Called by the menu manager to quit game
@@ -190,25 +193,25 @@ public class GameManager : MonoBehaviour
         if (currentEvent == eventRegistry.introductionSO)
         {
             StartTimer();
-            ChangeState(GameState.FishingView);
+            ChangeView(GameView.FishingView);
         }
         else if (currentEvent == eventRegistry.recipeBookObtentionSO)
         {
             isRecipeBookUnlocked = true;
             currentTransition = transitionRegistry.endRecipeBookEventSO;
-            ChangeState(GameState.TransitionView); // Next state is in the ExitTransition function
+            ChangeView(GameView.TransitionView); // Next view is in the ExitTransition function
             SaveAndChangeCurrentTimeOfDay();
         }
         else if (currentEvent == eventRegistry.endSO)
         {
-            ChangeState(GameState.EndScreenView);
+            ChangeView(GameView.EndScreenView);
         }
     }
 
-    // Called at the end of a transition, go to the next state
+    // Called at the end of a transition, go to the next view
     public void ExitTransition()
     {
-        ChangeState(GameState.MapSelectionView);
+        ChangeView(GameView.MapSelectionView);
     }
 
     // Called in the FishingView at the end of the tutorial, unblock the timer
@@ -228,32 +231,32 @@ public class GameManager : MonoBehaviour
     {
         currentMap = mapSelected;
         StartTimer();
-        ChangeState(GameState.FishingView);
+        ChangeView(GameView.FishingView);
     }
 
     // Called when clicking on the inventory button
     public void EnterInventory()
     {
-        ChangeState(GameState.InventoryView);
+        ChangeView(GameView.InventoryView);
     }
 
     // Called in the Inventory Scene when clicking Exit
     public void ExitInventory()
     {
-        if (lastState == GameState.MapSelectionView)
+        if (lastView == GameView.MapSelectionView)
         {
-            ChangeState(GameState.MapSelectionView);   
+            ChangeView(GameView.MapSelectionView);   
         }
-        else if (lastState == GameState.FishingView)
+        else if (lastView == GameView.FishingView)
         {
-            ChangeState(GameState.FishingView);
+            ChangeView(GameView.FishingView);
         }
     }
 
     // Called in the FishingView Scene in need of passing in monster view
     public void EnterMonsterView()
     {
-        ChangeState(GameState.MonsterView);
+        ChangeView(GameView.MonsterView);
     }
 
     // Called in the MonsterView Scene after winning
@@ -262,11 +265,11 @@ public class GameManager : MonoBehaviour
         if (isFirstNight)
         {
             currentEvent = EventRegistry.recipeBookObtentionSO;
-            ChangeState(GameState.EventView);
+            ChangeView(GameView.EventView);
         }
         else
         {
-            ChangeState(GameState.FishingView);
+            ChangeView(GameView.FishingView);
         }
     }
 
@@ -280,7 +283,7 @@ public class GameManager : MonoBehaviour
         }
 
         currentTransition = transitionRegistry.deathAgainstMonsterSO;
-        ChangeState(GameState.TransitionView); // Next state is in the ExitTransition function
+        ChangeView(GameView.TransitionView); // Next view is in the ExitTransition function
 
         // The next day start
         SaveAndChangeCurrentTimeOfDay();
@@ -292,12 +295,12 @@ public class GameManager : MonoBehaviour
         if (currentTimeOfDay == timeOfDayRegistry.daySO)
         {
             currentTransition = transitionRegistry.endDaySO;
-            ChangeState(GameState.TransitionView); // Next state is in the ExitTransition function
+            ChangeView(GameView.TransitionView); // Next view is in the ExitTransition function
         }
         else
         {            
             currentTransition = transitionRegistry.endNightSO;
-            ChangeState(GameState.TransitionView); // Next state is in the ExitTransition function
+            ChangeView(GameView.TransitionView); // Next view is in the ExitTransition function
         }
 
         // Change the time of day
@@ -308,7 +311,7 @@ public class GameManager : MonoBehaviour
     public void EnterEndEvent()
     {
         currentEvent = eventRegistry.endSO;
-        ChangeState(GameState.EventView);
+        ChangeView(GameView.EventView);
     }
 
 
@@ -352,73 +355,84 @@ public class GameManager : MonoBehaviour
         fishingPlayerOrientation = orientation;
     }
 
+
     // HELPING FONCTIONS
 
     // Update the game (called at each frame of the game)
     private void Update()
     {
-        // Handle the game update logic for states
-        switch (currentState)
+        // Handle the game update logic for views
+        switch (currentView)
         {
-            case GameState.Main:
+            case GameView.Main:
                 break;
                 
-            case GameState.EventView:
+            case GameView.EventView:
                 break;
             
-            case GameState.TransitionView:
+            case GameView.TransitionView:
                 break;
 
-            case GameState.MapSelectionView:
+            case GameView.MapSelectionView:
                 break;
 
-            case GameState.InventoryView:
+            case GameView.InventoryView:
                 break;
 
-            case GameState.FishingView:
+            case GameView.FishingView:
                 if (!IsFishingTutorialEnabled) { UpdateTimerAndCheckIfOut(); } // No timer during fishing tutorial
                 break;
 
-            case GameState.MonsterView:
+            case GameView.MonsterView:
                 if (!IsFirstNight) { UpdateTimerAndCheckIfOut(); } // No timer during monster tutorial
                 break;
             
-            case GameState.EndScreenView:
+            case GameView.EndScreenView:
                 break;
         }
     }
 
-    // Pass from one state to another
-    private void ChangeState(GameState newState)
+    // Pass from one view to another
+    private void ChangeView(GameView newView)
     {
-        lastState = currentState;
-        currentState = newState;
+        lastView = currentView;
+        currentView = newView;
 
-        switch (currentState)
+        switch (currentView)
         {
-            case GameState.Main:
+            case GameView.Main:
                 SceneManager.LoadScene("Main");
+                AudioManager.Instance.PlayMenuAndEventMusic();
                 break;
-            case GameState.EventView:
+            case GameView.EventView:
                 SceneManager.LoadScene("EventView");
+                AudioManager.Instance.PlayMenuAndEventMusic();
                 break;
-            case GameState.TransitionView:
+            case GameView.TransitionView:
                 SceneManager.LoadScene("TransitionView");
+                AudioManager.Instance.StopMusic();
                 break;
-            case GameState.MapSelectionView:
+            case GameView.MapSelectionView:
                 SceneManager.LoadScene("MapSelectionView");
+                AudioManager.Instance.PlayMapMusic();
                 break;
-            case GameState.InventoryView:
+            case GameView.InventoryView:
                 SceneManager.LoadScene("InventoryView");
+                // The inventory just keep playing the music of the scene from which it has been loaded
                 break;
-            case GameState.FishingView:
+            case GameView.FishingView:
                 SceneManager.LoadScene("FishingView");
+                if ( currentTimeOfDay == TimeOfDayRegistry.daySO ) { AudioManager.Instance.PlayFishingDayMusic(); }
+                else { AudioManager.Instance.PlayFishingNightMusic(); }
                 break;
-            case GameState.MonsterView:
+            case GameView.MonsterView:
                 SceneManager.LoadScene("MonsterView");
+                AudioManager.Instance.SaveFishingNightMusicTime();
+                AudioManager.Instance.PlayMonsterMusic();
                 break;
-            case GameState.EndScreenView:
+            case GameView.EndScreenView:
                 SceneManager.LoadScene("EndScreenView");
+                AudioManager.Instance.PlayMenuAndEventMusic();
                 break;
         }
     }
@@ -460,6 +474,7 @@ public class GameManager : MonoBehaviour
             {
                 isFirstNight = false;
             }
+            AudioManager.Instance.InitializeFishingNightMusicTime();
         }
         else
         {
@@ -492,6 +507,7 @@ public class GameManager : MonoBehaviour
             obtainedIngredientLastDayAndNight[ingredient] = 0;
         }
     }
+
 
     // DATA FUNCTIONS
 

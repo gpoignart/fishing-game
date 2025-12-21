@@ -8,6 +8,8 @@ public class MainMenuManager : MonoBehaviour
     public static MainMenuManager Instance { get; private set; }
 
     [SerializeField] private Button continueButton;
+    [SerializeField] private CanvasGroup mainMenuButtons;
+    [SerializeField] private GameObject confirmationPopUp;
 
     // Make this class a singleton
     private void Awake()
@@ -24,12 +26,10 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         continueButton.interactable = SaveSystem.HasSave();
+        HideConfirmationPopUp();
     }
 
-    public void OnNewGameButtonPressed()
-    {
-        GameManager.Instance.StartNewGame();
-    }
+    // Main buttons
 
     public void OnContinueButtonPressed()
     {
@@ -44,5 +44,48 @@ public class MainMenuManager : MonoBehaviour
     public void OnCreditsButtonPressed()
     {
         GameManager.Instance.EnterCredits();
+    }
+
+    // Start a new game button / popup
+
+    public void OnNewGameButtonPressed()
+    {
+        DisableMainMenuButtons();
+        ShowConfirmationPopUp();
+    }
+
+    public void OnPopUpCancelButton()
+    {
+        AbleMainMenuButtons();
+        HideConfirmationPopUp();
+    }
+
+    public void OnPopUpYesButton()
+    {
+        GameManager.Instance.StartNewGame();
+    }
+
+    // Main menu buttons UI
+
+    private void AbleMainMenuButtons()
+    {
+        mainMenuButtons.interactable = true;
+    }
+
+    private void DisableMainMenuButtons()
+    {
+        mainMenuButtons.interactable = false;
+    }
+
+    // Confirmation popup UI
+
+    private void ShowConfirmationPopUp()
+    {
+        confirmationPopUp.SetActive(true);
+    }
+    
+    private void HideConfirmationPopUp()
+    {
+        confirmationPopUp.SetActive(false);
     }
 }

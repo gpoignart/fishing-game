@@ -30,13 +30,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip turnRecipeBookPage;
 
     // Parameters
-    private float musicFadeDuration = 0.5f;
+    private float musicFadeDuration = 0.3f;
     private float musicVolume = 1f;
 
     // Internal references
     private float fishingNightMusicTime;
     private Coroutine fadeCoroutine;
-
 
     // Make this class a singleton
     private void Awake()
@@ -62,6 +61,37 @@ public class AudioManager : MonoBehaviour
 
 
     // Music functions
+    
+    private void PlayMusic(AudioClip newMusic, float resumeTime = 0f)
+    {
+        // To avoid collision if we call a new music when the olds ones are not entirely fade in/fade out
+        if (fadeCoroutine != null) 
+        {
+            StopCoroutine(fadeCoroutine);
+            fadeCoroutine = null;
+            
+            // Stop the music not entirely fade in/fade out to fade in the new music directly
+            musicSource.Stop();
+            musicSource.volume = musicVolume;
+        }
+
+        // We don't change the music if it is already playing
+        if (musicSource.clip == newMusic && musicSource.isPlaying) { return; }
+
+        fadeCoroutine = StartCoroutine(FadeOutIn(newMusic, resumeTime));
+    }
+
+    public void StopMusic()
+    {
+        // To avoid collision if we stop a music when a new one could be soon fading in
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+            fadeCoroutine = null;
+        }
+
+        fadeCoroutine = StartCoroutine(FadeOutAndStop());
+    }
 
     public void PlayMenuAndEventMusic()
     {
@@ -99,13 +129,13 @@ public class AudioManager : MonoBehaviour
         PlayMusic(monsterMusic);
     }
 
-    public void StopMusic()
-    {
-        StartCoroutine(FadeOutAndStop());
-    }
-
 
     // SFX functions
+
+    private void PlaySFX(AudioClip sfx)
+    {
+        sfxSource.PlayOneShot(sfx);
+    }
 
     public void PlayMonsterScreamLeftSFX()
     {
@@ -165,35 +195,6 @@ public class AudioManager : MonoBehaviour
 
     // Helping functions
 
-    private void PlayMusic(AudioClip music, float resumeTime = 0f)
-    {
-        // To avoid collision, we stop the previous coroutine if in progress
-        if (fadeCoroutine != null) 
-        {
-            StopCoroutine(fadeCoroutine);
-            musicSource.volume = musicVolume;
-        }
-
-        // We don't change the music if it is already playing
-        if (musicSource.clip == music && musicSource.isPlaying) { return; }
-
-        fadeCoroutine = StartCoroutine(FadeOutIn(music, resumeTime));
-    }
-
-    private IEnumerator FadeOutAndStop()
-    {
-        float startVolume = musicSource.volume;
-
-        while (musicSource.volume > 0f)
-        {
-            musicSource.volume -= startVolume * Time.deltaTime / musicFadeDuration;
-            yield return null;
-        }
-
-        musicSource.Stop();
-        musicSource.volume = musicVolume;
-    }
-
     private IEnumerator FadeOutIn(AudioClip newMusic, float resumeTime)
     {
         float startVolume = musicSource.volume;
@@ -221,10 +222,21 @@ public class AudioManager : MonoBehaviour
         }
 
         musicSource.volume = musicVolume;
+        fadeCoroutine = null;
     }
 
-    public void PlaySFX(AudioClip sfx)
+    private IEnumerator FadeOutAndStop()
     {
-        sfxSource.PlayOneShot(sfx);
+        float startVolume = musicSource.volume;
+
+        while (musicSource.volume > 0f)
+        {
+            musicSource.volume -= startVolume * Time.deltaTime / musicFadeDuration;
+            yield return null;
+        }
+
+        musicSource.Stop();
+        musicSource.volume = musicVolume;
+        fadeCoroutine = null;
     }
 }

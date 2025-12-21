@@ -29,12 +29,13 @@ public class MapSelectionGameManager : MonoBehaviour
 
     private void Start()
     {
+        MapSelectionUIManager.Instance.UpdateBackgroundImage();
+        MapSelectionUIManager.Instance.UpdateDayAndNightCounterText();
         MapSelectionUIManager.Instance.HideExplanationPanel();
         for (int i = 0; i < GameManager.Instance.MapRegistry.AllMaps.Length; i++)
         {
             MapSelectionUIManager.Instance.UpdateMapButtonText(i, GameManager.Instance.MapRegistry.AllMaps[i].mapName);
         }
-        MapSelectionUIManager.Instance.UpdateDayAndNightCounterText();
 
         // Gives explanations the first time we enter the map
         if (GameManager.Instance.IsMapSelectionExplanationEnabled)

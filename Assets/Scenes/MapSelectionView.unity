@@ -166,6 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374cc074fd9a9284499352966b9519f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dayBackgroundSprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
+  dayBackgroundColor: {r: 0.04705883, g: 0.454902, b: 0, a: 1}
+  nightBackgroundSprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
+  nightBackgroundColor: {r: 0.018867921, g: 0.18238991, b: 0, a: 1}
+  backgroundImage: {fileID: 0}
   mapButtonTexts:
   - {fileID: 1585830960}
   - {fileID: 2064581386}
@@ -567,7 +572,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

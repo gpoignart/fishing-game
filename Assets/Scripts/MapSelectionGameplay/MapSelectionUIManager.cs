@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class MapSelectionUIManager : MonoBehaviour
@@ -6,6 +7,11 @@ public class MapSelectionUIManager : MonoBehaviour
     // Allow to call MapSelectionUIManager.Instance anywhere (singleton)
     public static MapSelectionUIManager Instance { get; private set; }
 
+    [SerializeField] private Sprite dayBackgroundSprite;
+    [SerializeField] private Color dayBackgroundColor; // TO REMOVE WHEN REAL SPRITE
+    [SerializeField] private Sprite nightBackgroundSprite;
+    [SerializeField] private Color nightBackgroundColor;  // TO REMOVE WHEN REAL SPRITE
+    [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI[] mapButtonTexts;
     [SerializeField] private TextMeshProUGUI dayAndNightCounterText;
     [SerializeField] private TextMeshProUGUI chooseAMapText;
@@ -24,6 +30,20 @@ public class MapSelectionUIManager : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    public void UpdateBackgroundImage()
+    {
+        if (GameManager.Instance.CurrentTimeOfDay == GameManager.Instance.TimeOfDayRegistry.daySO)
+        {
+            backgroundImage.sprite = dayBackgroundSprite;
+            backgroundImage.color = dayBackgroundColor; // TO REMOVE WHEN REAL SPRITE
+        }
+        else
+        {
+            backgroundImage.sprite = nightBackgroundSprite;
+            backgroundImage.color = nightBackgroundColor; // TO REMOVE WHEN REAL SPRITE            
+        }
     }
 
     public void UpdateMapButtonText(int index, string mapName)

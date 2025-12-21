@@ -9,8 +9,11 @@
 ## Project Structure
 
 ### Art
+- **Sprites/**
 
 ### Audio
+- **Musics/**
+- **Sounds/**
 
 ### Prefabs
 
@@ -27,7 +30,6 @@
 - **PlayerEquipment**
 
 ### Script
-Organized by gameplay domain:
 - **MenusGameplay/**
 - **FishingGameplay/**
 - **MonsterGameplay/**

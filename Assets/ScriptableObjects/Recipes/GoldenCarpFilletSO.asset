@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6928b3625c09eec4db7f6a7ef2cecbe7, type: 3}
-  m_Name: Golden Carp Fillet
+  m_Name: GoldenCarpFilletSO
   m_EditorClassIdentifier: 
   recipeName: Golden Carp Fillet
   description: Upgrades Fishing Rod to level 3.

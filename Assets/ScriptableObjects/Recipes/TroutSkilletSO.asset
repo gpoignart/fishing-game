@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38f370df5110c294295000b07dd90a0b, type: 3}
-  m_Name: Trout Skillet
+  m_Name: TroutSkilletSO
   m_EditorClassIdentifier: 
   recipeName: Trout Skillet
   description: Upgrades Flashlight to level 2.

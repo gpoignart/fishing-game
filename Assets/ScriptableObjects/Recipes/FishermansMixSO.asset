@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb5014f29c3b064a87823cf72e88b08, type: 3}
-  m_Name: "Fisherman\u2019s Mix"
+  m_Name: FishermansMixSO
   m_EditorClassIdentifier: 
   recipeName: "Fisherman\u2019s Mix"
   description: Upgrades Boat to level 2.

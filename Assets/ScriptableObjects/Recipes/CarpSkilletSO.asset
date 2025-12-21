@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8be2d91f103a795438832dab47d0a302, type: 3}
-  m_Name: Carp Skillet
+  m_Name: CarpSkilletSO
   m_EditorClassIdentifier: 
   recipeName: Carp Skillet
   description: Upgrades Fishing Rod to level 2.

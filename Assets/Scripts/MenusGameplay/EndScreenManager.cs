@@ -30,5 +30,6 @@ public class EndScreenManager : MonoBehaviour
     public void OnMenuButtonPressed()
     {
         GameManager.Instance.EnterMenu();
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 }

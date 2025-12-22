@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2848e8ba9e7aa104591e585d43b63a61, type: 3}
+  m_Name: ShadowmoonRiverSO
+  m_EditorClassIdentifier: 
+  mapName: 
+  dayBottomBackgroundSprite: {fileID: 21300000, guid: 163d4f5f263fa4c46a24bc9ac8d71f11, type: 3}
+  dayTopBackgroundSprite: {fileID: 21300000, guid: 13662fadf6cd6c941b2bd54f41b5fd67, type: 3}
+  nightBottomBackgroundSprite: {fileID: 21300000, guid: ae9512d810302ca4bbc50c30d79abdf4, type: 3}
+  nightTopBackgroundSprite: {fileID: 21300000, guid: 61857fb0c970d37489fde7bd5403e170, type: 3}
+  dayLogoSprite: {fileID: 21300000, guid: 571533d337d6f5f43adb43e19b591d5e, type: 3}
+  nightLogoSprite: {fileID: 21300000, guid: e658f8858c6291e4bbe9edaf166dc053, type: 3}

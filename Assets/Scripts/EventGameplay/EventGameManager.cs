@@ -30,7 +30,6 @@ public class EventGameManager : MonoBehaviour
 
         EventUIManager.Instance.UpdateText(GameManager.Instance.CurrentEvent.eventLines[indexOfText].text);
         EventUIManager.Instance.UpdateBackgroundImage(GameManager.Instance.CurrentEvent.eventLines[indexOfText].backgroundImage);
-        EventUIManager.Instance.UpdateNextButtonText("NEXT");
     }
 
     private void Update()
@@ -55,12 +54,6 @@ public class EventGameManager : MonoBehaviour
         {
             EventUIManager.Instance.UpdateText(GameManager.Instance.CurrentEvent.eventLines[indexOfText].text);
             EventUIManager.Instance.UpdateBackgroundImage(GameManager.Instance.CurrentEvent.eventLines[indexOfText].backgroundImage);
-
-            if (indexOfText == numberOfLines - 1)
-            {
-                EventUIManager.Instance.UpdateNextButtonText("END");
-            }
         }
     }
-
 }

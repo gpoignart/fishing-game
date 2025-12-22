@@ -34,16 +34,19 @@ public class MainMenuManager : MonoBehaviour
     public void OnContinueButtonPressed()
     {
         GameManager.Instance.ContinueGame();
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     public void OnQuitButtonPressed()
     {
         GameManager.Instance.QuitGame();
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     public void OnCreditsButtonPressed()
     {
         GameManager.Instance.EnterCredits();
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     // Start a new game button / popup
@@ -59,17 +62,20 @@ public class MainMenuManager : MonoBehaviour
         {
             GameManager.Instance.StartNewGame();
         }
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     public void OnPopUpCancelButton()
     {
         AbleMainMenuButtons();
         HideConfirmationPopUp();
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     public void OnPopUpYesButton()
     {
         GameManager.Instance.StartNewGame();
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     // Main menu buttons UI

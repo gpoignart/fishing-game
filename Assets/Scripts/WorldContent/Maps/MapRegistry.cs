@@ -3,23 +3,23 @@ using System.Linq;
 [System.Serializable]
 public class MapRegistry
 {
-    public DriftwoodRiverSO driftwoodRiverSO;
-    public ShadowmoonMarshSO shadowmoonMarshSO;
+    public ShadowmoonRiverSO shadowmoonRiverSO;
+    public DriftwoodMarshSO driftwoodMarshSO;
     public ArcaneLakeSO arcaneLakeSO;
 
     // List of maps
     public MapSO[] AllMaps =>
         new MapSO[]
         {
-            driftwoodRiverSO,
-            shadowmoonMarshSO,
+            shadowmoonRiverSO,
+            driftwoodMarshSO,
             arcaneLakeSO
         };
 
     public void Initialize()
     {
-        driftwoodRiverSO.Initialize();
-        shadowmoonMarshSO.Initialize();
+        shadowmoonRiverSO.Initialize();
+        driftwoodMarshSO.Initialize();
         arcaneLakeSO.Initialize();
     }
 

@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: ArcaneLakeSO
   m_EditorClassIdentifier: 
   mapName: Arcane Lake
-  dayBackgroundSprite: {fileID: 21300000, guid: 339288237449ced45bdcafd17ad4dbcc, type: 3}
-  nightBackgroundSprite: {fileID: 21300000, guid: 6ccc7532a4d945d4db3e90a2d8f1fa24, type: 3}
+  dayBottomBackgroundSprite: {fileID: 21300000, guid: 549e5052e275931418d4c5907f3c5ea0, type: 3}
+  dayTopBackgroundSprite: {fileID: 21300000, guid: 13662fadf6cd6c941b2bd54f41b5fd67, type: 3}
+  nightBottomBackgroundSprite: {fileID: 21300000, guid: 549e5052e275931418d4c5907f3c5ea0, type: 3}
+  nightTopBackgroundSprite: {fileID: 21300000, guid: 48b00946ff8307a4c8a0c68322ac43f6, type: 3}
+  dayLogoSprite: {fileID: 21300000, guid: 4fd97dff1f306844f8db09e57eedcad0, type: 3}
+  nightLogoSprite: {fileID: 21300000, guid: d55b4008320d7c2409ecf2c5e33913a5, type: 3}

@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource fishingRodSource;
 
     // Musics
     [SerializeField] private AudioClip menuAndEventMusic;
@@ -17,6 +18,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip monsterMusic;
 
     // Sound effects
+    [SerializeField] private AudioClip fishingRodPull;
     [SerializeField] private AudioClip catchingFish;
     [SerializeField] private AudioClip catchingRareFish;
     [SerializeField] private AudioClip fishSwamAway;
@@ -28,6 +30,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip endNightTransition;
     [SerializeField] private AudioClip makeRecipe;
     [SerializeField] private AudioClip turnRecipeBookPage;
+    [SerializeField] private AudioClip pressingButton;
 
     // Parameters
     private float musicFadeDuration = 0.3f;
@@ -130,6 +133,22 @@ public class AudioManager : MonoBehaviour
     }
 
 
+    // Fishing rod functions
+
+    public void PlayFishingRodPullSFX()
+    {
+        fishingRodSource.clip = fishingRodPull;
+        fishingRodSource.loop = true;
+        fishingRodSource.Play();
+    }
+
+    public void StopFishingRodPullSFX()
+    {
+        fishingRodSource.Stop();
+        fishingRodSource.loop = false;
+    }
+
+
     // SFX functions
 
     private void PlaySFX(AudioClip sfx)
@@ -190,6 +209,11 @@ public class AudioManager : MonoBehaviour
     public void PlayEndNightTransitionSFX()
     {
         PlaySFX(endNightTransition);
+    }
+
+    public void PlayPressingButtonSFX()
+    {
+        PlaySFX(pressingButton);
     }
 
 

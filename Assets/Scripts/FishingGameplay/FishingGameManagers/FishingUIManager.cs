@@ -10,7 +10,10 @@ public class FishingUIManager : MonoBehaviour
 
     // Global UI elements
     [SerializeField]
-    private SpriteRenderer backgroundSpriteRenderer;
+    private SpriteRenderer bottomBackgroundSpriteRenderer;
+    
+    [SerializeField]
+    private SpriteRenderer topBackgroundSpriteRenderer;
 
     [SerializeField]
     private Button inventoryButton;
@@ -79,11 +82,13 @@ public class FishingUIManager : MonoBehaviour
         // Initialize backgrounds sprites
         if (GameManager.Instance.CurrentTimeOfDay == GameManager.Instance.TimeOfDayRegistry.daySO)
         {
-            backgroundSpriteRenderer.sprite = GameManager.Instance.CurrentMap.dayBackgroundSprite;
+            bottomBackgroundSpriteRenderer.sprite = GameManager.Instance.CurrentMap.dayBottomBackgroundSprite;
+            topBackgroundSpriteRenderer.sprite = GameManager.Instance.CurrentMap.dayTopBackgroundSprite;
         }
         else
         {
-            backgroundSpriteRenderer.sprite = GameManager.Instance.CurrentMap.nightBackgroundSprite;
+            bottomBackgroundSpriteRenderer.sprite = GameManager.Instance.CurrentMap.nightBottomBackgroundSprite;
+            topBackgroundSpriteRenderer.sprite = GameManager.Instance.CurrentMap.nightTopBackgroundSprite;
         }
     }
 

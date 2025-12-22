@@ -1872,6 +1872,7 @@ Transform:
   m_Children:
   - {fileID: 503009542}
   - {fileID: 536576373}
+  - {fileID: 1949288799}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1126666077
@@ -1888,11 +1889,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 503009541}
   sfxSource: {fileID: 536576372}
+  fishingRodSource: {fileID: 1949288798}
   menuAndEventMusic: {fileID: 8300000, guid: 72d0263d7fe77d945aa895d9b2557283, type: 3}
   mapMusic: {fileID: 8300000, guid: 40124ba679a2bdf49aabce5bcd0ae3b5, type: 3}
   fishingDayMusic: {fileID: 8300000, guid: 092e415d402103b4ab7779bcc9ae7ca9, type: 3}
   fishingNightMusic: {fileID: 8300000, guid: f27585887f2d6564489e30d9c605154b, type: 3}
   monsterMusic: {fileID: 8300000, guid: 35cf2b1b4b2ad284d90e7e95f02dfebd, type: 3}
+  fishingRodPull: {fileID: 8300000, guid: a8aefe72231ae754ba1accc559bac634, type: 3}
   catchingFish: {fileID: 8300000, guid: 9a6431284fb0b10468c28760631d039b, type: 3}
   catchingRareFish: {fileID: 8300000, guid: aa3e4b2a04aeea44e8f3f19b4e481a8c, type: 3}
   fishSwamAway: {fileID: 8300000, guid: 771c9aa1140250c49a35037fbca1ccba, type: 3}
@@ -1904,6 +1907,7 @@ MonoBehaviour:
   endNightTransition: {fileID: 8300000, guid: 7ca32648b3c11e94bb995a721a41d416, type: 3}
   makeRecipe: {fileID: 8300000, guid: d08172ab8a334f04592dd635f05c5d3a, type: 3}
   turnRecipeBookPage: {fileID: 8300000, guid: 9b2933ddf0aa6684e965b80c1053d9ab, type: 3}
+  pressingButton: {fileID: 8300000, guid: 6264db6826c52b24d92b2f638deddf28, type: 3}
 --- !u!1 &1216056134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2564,8 +2568,8 @@ MonoBehaviour:
     daySO: {fileID: 11400000, guid: 3c477c3a73369b443af7b7e9632cc91c, type: 2}
     nightSO: {fileID: 11400000, guid: 5169ba54d93560e43b170091f8176e18, type: 2}
   mapRegistry:
-    driftwoodRiverSO: {fileID: 11400000, guid: bce46c8000792094fa6fde8765bb8c49, type: 2}
-    shadowmoonMarshSO: {fileID: 11400000, guid: 5ae9edb074f58264691736a7cd7728a7, type: 2}
+    shadowmoonRiverSO: {fileID: 11400000, guid: 2ef49a78ecbaddc40935407bb079f66c, type: 2}
+    driftwoodMarshSO: {fileID: 11400000, guid: 34dfc978e6f89b84286da0d60bb9903b, type: 2}
     arcaneLakeSO: {fileID: 11400000, guid: 6fbcdfdbf7d32e742ac214e102065a01, type: 2}
   playerEquipmentRegistry:
     boatSO: {fileID: 11400000, guid: a34dcce3a53493f4bb448d9a06ee7de0, type: 2}
@@ -2995,6 +2999,134 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &1949288797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1949288799}
+  - component: {fileID: 1949288798}
+  m_Layer: 0
+  m_Name: FishingRodSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1949288798
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949288797}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1949288799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949288797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1126666076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

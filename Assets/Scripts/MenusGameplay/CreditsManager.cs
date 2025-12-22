@@ -23,5 +23,6 @@ public class CreditsManager : MonoBehaviour
     public void OnExitButtonPressed()
     {
         GameManager.Instance.ExitCredits();
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 }

@@ -145,6 +145,7 @@ public class MonsterGameManager : MonoBehaviour
         {
             ChangeTutorialState(MonsterTutorialState.End);
         }
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     public void PlayerWin()

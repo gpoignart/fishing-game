@@ -12,7 +12,6 @@ public class EventUIManager : MonoBehaviour
     // Global UI elements
     [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private TextMeshProUGUI nextButtonText;
 
     // Make this class a singleton
     private void Awake()
@@ -34,10 +33,5 @@ public class EventUIManager : MonoBehaviour
     public void UpdateText(string textContent)
     {
         text.text = textContent;
-    }
-
-    public void UpdateNextButtonText(string nextButtonTextContent)
-    {
-        nextButtonText.text = nextButtonTextContent;
     }
 }

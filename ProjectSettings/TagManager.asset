@@ -38,15 +38,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 876138275
-    locked: 0
-  - name: Monster
-    uniqueID: 975277887
-    locked: 0
-  - name: Boat
-    uniqueID: 2435969175
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

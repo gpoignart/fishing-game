@@ -3,8 +3,12 @@ using UnityEngine;
 public abstract class MapSO : ScriptableObject
 {
     public string mapName;
-    public Sprite dayBackgroundSprite;
-    public Sprite nightBackgroundSprite;
+    public Sprite dayBottomBackgroundSprite;
+    public Sprite dayTopBackgroundSprite;
+    public Sprite nightBottomBackgroundSprite;
+    public Sprite nightTopBackgroundSprite;
+    public Sprite dayLogoSprite;
+    public Sprite nightLogoSprite;
 
     public abstract void Initialize();
 }

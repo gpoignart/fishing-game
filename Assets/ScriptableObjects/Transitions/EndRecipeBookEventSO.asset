@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b5c8dd0fd202e4abb852f775c52df7, type: 3}
   m_Name: EndRecipeBookEventSO
   m_EditorClassIdentifier: 
-  backgroundSprite: {fileID: 21300000, guid: 865f2e7cd9ce2b14785bc63443415a5a, type: 3}
+  backgroundSprite: {fileID: 21300000, guid: cbf4bcfc1d8b6214e84ee277c72c101e, type: 3}
   text: 'Day finally breaks...
 
     You obtained the recipe book. You can consult

@@ -38,18 +38,21 @@ public class InventoryViewGameManager : MonoBehaviour
     public void OnExitButtonPressed()
     {
         GameManager.Instance.ExitInventory();
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     // See Inventory
     public void OnSeeInventoryButtonPressed()
     { 
         ChangeState(InventoryViewGameState.Inventory);
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     // See Recipe Book
     public void OnSeeRecipeBookButtonPressed()
     { 
         ChangeState(InventoryViewGameState.RecipeBook);
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     // Pass from one state to another

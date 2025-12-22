@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
 
         // Initialize attributes
         currentTimeOfDay = TimeOfDayRegistry.daySO;
-        currentMap = MapRegistry.driftwoodRiverSO; // Default map, for the first day of fishing
+        currentMap = MapRegistry.shadowmoonRiverSO; // Default map, for the first day of fishing
         daysCount = 1;
         nightsCount = 0;
         isFirstDay = true;
@@ -206,6 +206,8 @@ public class GameManager : MonoBehaviour
     private void ChangeView(GameView newView)
     {
         if (!canChangeView) { return; }
+
+        if (currentView == GameView.FishingView) { AudioManager.Instance.StopFishingRodPullSFX(); }
 
         lastView = currentView;
         currentView = newView;

@@ -6,7 +6,7 @@ public class MidnightCatfishSO : FishSO
     public override void Initialize()
     {
         this.fishName = "MidnightCatfish";
-        this.spawnMaps = new MapSO[] { GameManager.Instance.MapRegistry.shadowmoonMarshSO };
+        this.spawnMaps = new MapSO[] { GameManager.Instance.MapRegistry.shadowmoonRiverSO };
         this.spawnTimes = new TimeOfDaySO[] { GameManager.Instance.TimeOfDayRegistry.nightSO };
         this.drops = new IngredientSO[] { GameManager.Instance.IngredientRegistry.shadowingEyeSO };
         this.spawnChance = 10;

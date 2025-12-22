@@ -171,6 +171,7 @@ public class FishingGameManager : MonoBehaviour
         if (GameManager.Instance.IsFishingTutorialEnabled) { return; }
 
         GameManager.Instance.EnterInventory();
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     // Called when the player clicks extend commands button
@@ -267,6 +268,7 @@ public class FishingGameManager : MonoBehaviour
         {
             TutorialFinished();
         }
+        AudioManager.Instance.PlayPressingButtonSFX();
     }
 
     // Called at the end of the endState of the tutorial, start the real day 1
@@ -309,6 +311,7 @@ public class FishingGameManager : MonoBehaviour
             case FishingGameState.Fishing:
                 FishingUIManager.Instance.ShowFishingStateUI();
                 FishingMinigameManager.Instance.StartMiniGame(currentFishBelow);
+                AudioManager.Instance.PlayFishingRodPullSFX();
                 Debug.Log("Entering Fishing state");
                 break;
         }
@@ -330,6 +333,7 @@ public class FishingGameManager : MonoBehaviour
 
             case FishingGameState.Fishing:
                 FishingUIManager.Instance.HideFishingStateUI();
+                AudioManager.Instance.StopFishingRodPullSFX();
                 Debug.Log("Exiting Fishing state");
                 break;
         }

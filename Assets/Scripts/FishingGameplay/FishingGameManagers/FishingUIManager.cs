@@ -10,13 +10,7 @@ public class FishingUIManager : MonoBehaviour
 
     // Global UI elements
     [SerializeField]
-    private SpriteRenderer skySpriteRenderer;
-
-    [SerializeField]
-    private SpriteRenderer underwaterSpriteRenderer;
-
-    [SerializeField]
-    private SpriteRenderer lakeFloorSpriteRenderer;
+    private SpriteRenderer backgroundSpriteRenderer;
 
     [SerializeField]
     private Button inventoryButton;
@@ -85,21 +79,11 @@ public class FishingUIManager : MonoBehaviour
         // Initialize backgrounds sprites
         if (GameManager.Instance.CurrentTimeOfDay == GameManager.Instance.TimeOfDayRegistry.daySO)
         {
-            skySpriteRenderer.sprite = GameManager.Instance.CurrentMap.skyDaySprite;
-            skySpriteRenderer.color = GameManager.Instance.CurrentMap.skyDayColor;
-            underwaterSpriteRenderer.sprite = GameManager.Instance.CurrentMap.underwaterDaySprite;
-            underwaterSpriteRenderer.color = GameManager.Instance.CurrentMap.underwaterDayColor;
-            lakeFloorSpriteRenderer.sprite = GameManager.Instance.CurrentMap.lakeFloorDaySprite;
-            lakeFloorSpriteRenderer.color = GameManager.Instance.CurrentMap.lakeFloorDayColor;
+            backgroundSpriteRenderer.sprite = GameManager.Instance.CurrentMap.dayBackgroundSprite;
         }
         else
         {
-            skySpriteRenderer.sprite = GameManager.Instance.CurrentMap.skyNightSprite;
-            skySpriteRenderer.color = GameManager.Instance.CurrentMap.skyNightColor;
-            underwaterSpriteRenderer.sprite = GameManager.Instance.CurrentMap.underwaterNightSprite;
-            underwaterSpriteRenderer.color = GameManager.Instance.CurrentMap.underwaterNightColor;
-            lakeFloorSpriteRenderer.sprite = GameManager.Instance.CurrentMap.lakeFloorNightSprite;
-            lakeFloorSpriteRenderer.color = GameManager.Instance.CurrentMap.lakeFloorNightColor;
+            backgroundSpriteRenderer.sprite = GameManager.Instance.CurrentMap.nightBackgroundSprite;
         }
     }
 

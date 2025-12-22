@@ -26,8 +26,7 @@ public static class SaveSystem
     // Load
     public static SaveData Load()
     {
-        if (!HasSave())
-            return null;
+        if (!HasSave()) { return null; }
         
         Debug.Log("Load called");
 
@@ -38,7 +37,6 @@ public static class SaveSystem
     // Delete
     public static void DeleteSave()
     {
-        if (HasSave())
-            File.Delete(SavePath);
+        if (HasSave()) { File.Delete(SavePath); }
     }
 }

@@ -13,15 +13,5 @@ MonoBehaviour:
   m_Name: DriftwoodRiverSO
   m_EditorClassIdentifier: 
   mapName: Driftwood River
-  skyDaySprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
-  skyDayColor: {r: 0, g: 0.92184067, b: 1, a: 1}
-  underwaterDaySprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
-  underwaterDayColor: {r: 0.14779866, g: 0.41556025, b: 1, a: 1}
-  lakeFloorDaySprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
-  lakeFloorDayColor: {r: 0.49685526, g: 0.28306696, b: 0, a: 1}
-  skyNightSprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
-  skyNightColor: {r: 0, g: 0.14910261, b: 0.509434, a: 1}
-  underwaterNightSprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
-  underwaterNightColor: {r: 0.024662752, g: 0.07431756, b: 0.18238991, a: 1}
-  lakeFloorNightSprite: {fileID: 7482667652216324306, guid: 5ae66d6920ef1ed458be709f860c07dd, type: 3}
-  lakeFloorNightColor: {r: 0.18867922, g: 0.106752716, b: 0, a: 1}
+  dayBackgroundSprite: {fileID: 21300000, guid: 339288237449ced45bdcafd17ad4dbcc, type: 3}
+  nightBackgroundSprite: {fileID: 21300000, guid: 6ccc7532a4d945d4db3e90a2d8f1fa24, type: 3}

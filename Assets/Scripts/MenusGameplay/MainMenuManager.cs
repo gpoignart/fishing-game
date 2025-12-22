@@ -50,8 +50,15 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnNewGameButtonPressed()
     {
-        DisableMainMenuButtons();
-        ShowConfirmationPopUp();
+        if (SaveSystem.HasSave())
+        {
+            DisableMainMenuButtons();
+            ShowConfirmationPopUp();
+        }
+        else
+        {
+            GameManager.Instance.StartNewGame();
+        }
     }
 
     public void OnPopUpCancelButton()

@@ -231,6 +231,7 @@ public class GameManager : MonoBehaviour
 
             case GameView.MonsterView:
                 Cursor.lockState = CursorLockMode.None; // In case exit when locked
+                Cursor.visible = true;
                 break;
 
             case GameView.EndScreenView:

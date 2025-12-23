@@ -29,6 +29,7 @@ public class InventoryViewGameManager : MonoBehaviour
     {
         InventoryViewUIManager.Instance.HideRecipeBookStateUI();
         InventoryViewUIManager.Instance.ShowInventoryStateUI();
+        InventoryViewUIManager.Instance.HideIngredientPanelUI();
 
         // First state
         ChangeState(InventoryViewGameState.Inventory);
@@ -53,6 +54,43 @@ public class InventoryViewGameManager : MonoBehaviour
     { 
         ChangeState(InventoryViewGameState.RecipeBook);
         AudioManager.Instance.PlayPressingButtonSFX();
+    }
+    
+    // Show ingredient panel, called by the ingredientHoverUI
+    public void OnIngredientHoverEnter(RectTransform hoveredBox, IngredientSO ingredient)
+    {
+        FishSO fish = GameManager.Instance.FishRegistry.GetFishFromIngredient(ingredient);
+
+        // Determine fish spawn times
+        bool day = false;
+        bool night = false;
+        foreach (TimeOfDaySO time in fish.spawnTimes)
+        {
+            if (time == GameManager.Instance.TimeOfDayRegistry.daySO) { day = true; }
+
+            if (time == GameManager.Instance.TimeOfDayRegistry.nightSO) { night = true; }
+        }
+
+        // Count how many map icons we need
+        int iconsPerMap = (day && night) ? 2 : 1;
+        int totalIcons = fish.spawnMaps.Length * iconsPerMap;
+
+        // Create the array
+        Sprite[] mapSprites = new Sprite[totalIcons];
+        int index = 0;
+        foreach (MapSO map in fish.spawnMaps)
+        {
+            if (day) { mapSprites[index++] = map.dayLogoSprite; }
+            if (night) { mapSprites[index++] = map.nightLogoSprite; }
+        }
+
+        InventoryViewUIManager.Instance.ShowIngredientPanelUI(hoveredBox, ingredient.ingredientName, ingredient.sprite, fish.sprite, mapSprites);
+    }
+
+    // Hide ingredient panel (hover exit)
+    public void OnIngredientHoverExit()
+    {
+        InventoryViewUIManager.Instance.HideIngredientPanelUI();
     }
 
     // Pass from one state to another

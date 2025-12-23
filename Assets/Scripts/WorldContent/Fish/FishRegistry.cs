@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 [System.Serializable]
 public class FishRegistry
 {
@@ -17,6 +20,9 @@ public class FishRegistry
             midnightCatfishSO,
             mysticFishSO
         };
+    
+    // Dictionnary ingredient to fish
+    private Dictionary<IngredientSO, FishSO> ingredientToFish = new Dictionary<IngredientSO, FishSO>();
 
     public void Initialize()
     {
@@ -25,6 +31,32 @@ public class FishRegistry
         goldenSalmonSO.Initialize();
         midnightCatfishSO.Initialize();
         mysticFishSO.Initialize();
+        BuildIngredientToFish();
+    }
+
+    // Build dictionary ingredient to fish
+    private void BuildIngredientToFish()
+    {
+        ingredientToFish.Clear();
+
+        foreach (FishSO fish in AllFish)
+        {
+            foreach (IngredientSO ingredient in fish.drops)
+            {
+                if (ingredientToFish.ContainsKey(ingredient))
+                {
+                    continue;
+                }
+
+                ingredientToFish.Add(ingredient, fish);
+            }
+        }
+    }
+
+    public FishSO GetFishFromIngredient(IngredientSO ingredient)
+    {
+        if (ingredientToFish.TryGetValue(ingredient, out FishSO fish)) { return fish; }
+        return null;
     }
 }
 

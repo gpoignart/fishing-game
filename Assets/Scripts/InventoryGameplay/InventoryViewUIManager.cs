@@ -24,8 +24,16 @@ public class InventoryViewUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI boatDetailsText;
     [SerializeField] private TextMeshProUGUI flashinglightDetailsText;
 
+    [SerializeField] private Image[] ingredientBoxes;
     [SerializeField] private Image[] ingredientImages;
     [SerializeField] private TextMeshProUGUI[] ingredientTexts;
+
+    [SerializeField] private RectTransform ingredientInfoPanelRect;
+    [SerializeField] private TextMeshProUGUI ingredientPanelIngredientName;
+    [SerializeField] private Image ingredientPanelIngredientImage;
+    [SerializeField] private Image ingredientPanelFishImage;
+    [SerializeField] private Transform ingredientPanelMapsContainer;
+    [SerializeField] private GameObject ingredientPanelMapIconPrefab;
 
     // Make this class a singleton
     private void Awake()
@@ -102,12 +110,87 @@ public class InventoryViewUIManager : MonoBehaviour
         }
     }
 
-    // Update the ingredients UI
+    // Update the ingredients UI and attribute the right ingredient to the hover
     public void UpdateIngredientUI(int index, IngredientSO ingredient)
     {
         ingredientTexts[index].text = "x " + ingredient.playerQuantityPossessed;
         ingredientImages[index].sprite = ingredient.sprite;
+
+        IngredientHoverManager hover = ingredientBoxes[index].GetComponent<IngredientHoverManager>();
+        hover.ingredient = ingredient;
     }
+
+
+    // Show the ingredients panel UI
+    public void ShowIngredientPanelUI(RectTransform hoveredBox, string ingredientName, Sprite ingredientSprite, Sprite fishSprite, Sprite[] mapSprites)
+    {
+        // To do first to read the size
+        UpdateIngredientPanelUI(ingredientName, ingredientSprite, fishSprite, mapSprites);
+        ingredientInfoPanelRect.gameObject.SetActive(true);
+
+        // Place the panel ahead the hovered box without being out of the screen bounds
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(ingredientInfoPanelRect);
+
+        RectTransform canvasRect = ingredientInfoPanelRect.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
+
+        Vector2 ingredientInfoPanelSize = ingredientInfoPanelRect.rect.size;
+        Vector2 canvasSize = canvasRect.rect.size;
+
+        Vector3[] corners = new Vector3[4];
+        hoveredBox.GetWorldCorners(corners);
+        Vector3 topCenterWorld = (corners[1] + corners[2]) * 0.5f;
+
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRect,
+            RectTransformUtility.WorldToScreenPoint(null, topCenterWorld),
+            null,
+            out localPoint
+        );
+
+        float clampedX = Mathf.Clamp(
+            localPoint.x,
+            -canvasSize.x / 2 + ingredientInfoPanelSize.x / 2,
+            canvasSize.x / 2 - ingredientInfoPanelSize.x / 2
+        );
+
+        ingredientInfoPanelRect.localPosition = new Vector2(
+            clampedX,
+            ingredientInfoPanelRect.localPosition.y
+        );
+    }
+
+    // Hide the ingredients panel UI
+    public void HideIngredientPanelUI()
+    {
+        ingredientInfoPanelRect.gameObject.SetActive(false);
+    }
+
+    // Update the ingredients panel UI
+    public void UpdateIngredientPanelUI(string ingredientName, Sprite ingredientSprite, Sprite fishSprite, Sprite[] mapSprites)
+    {
+        ingredientPanelIngredientName.text = ingredientName;
+        ingredientPanelIngredientImage.sprite = ingredientSprite;
+        ingredientPanelFishImage.sprite = fishSprite;
+        ingredientPanelFishImage.SetNativeSize();
+
+        // Delete previous map icons       
+        foreach (Transform child in ingredientPanelMapsContainer) { Destroy(child.gameObject); }
+
+        // Create map icons
+        foreach (Sprite map in mapSprites)
+        {
+            GameObject icon = Instantiate(ingredientPanelMapIconPrefab, ingredientPanelMapsContainer);
+            icon.GetComponent<Image>().sprite = map;
+        }
+
+        // Force layout rebuild
+        LayoutRebuilder.ForceRebuildLayoutImmediate(
+            GetComponent<RectTransform>()
+        );
+    }
+
 
     // Display the UI for the Inventory state
     public void ShowInventoryStateUI()

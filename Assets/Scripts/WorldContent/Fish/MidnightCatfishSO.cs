@@ -9,10 +9,10 @@ public class MidnightCatfishSO : FishSO
         this.spawnMaps = new MapSO[] { GameManager.Instance.MapRegistry.shadowmoonRiverSO };
         this.spawnTimes = new TimeOfDaySO[] { GameManager.Instance.TimeOfDayRegistry.nightSO };
         this.drops = new IngredientSO[] { GameManager.Instance.IngredientRegistry.shadowingEyeSO };
-        this.spawnChance = 10;
+        this.spawnChance = 8;
         this.catchingDifficulties = new FishCatchingDifficulty[]
         {
-            new FishCatchingDifficulty(time: GameManager.Instance.TimeOfDayRegistry.nightSO, safeZoneMoveSpeed: 170f, requiredTimeInsideZone: 3f,allowedTimeOutsideZone: 2.5f, safeZoneWidth: 100f)
+            new FishCatchingDifficulty(time: GameManager.Instance.TimeOfDayRegistry.nightSO, safeZoneMoveSpeed: 180f, requiredTimeInsideZone: 3.2f, allowedTimeOutsideZone: 3f, safeZoneWidth: 100f)
         };
     }
 }

@@ -13,11 +13,11 @@ public class FlashlightSO : PlayerEquipmentSO
         this.detailsPerLevel = new string[]
         {
             "No bonus",
-            "Increases beam's speed",
-            "Increases beam's size"
+            "Increases beam's size",
+            "Increases beam's speed"
         };
         this.beamSize = new Vector2(130f, 130f);
-        this.beamFollowSpeed = 1.5f;
+        this.beamFollowSpeed = 1f;
     }
 
     public override void UpgradeTo(int newLevel)
@@ -25,13 +25,13 @@ public class FlashlightSO : PlayerEquipmentSO
         this.level = newLevel;
         if (this.level == 2)
         {
-            // Increase the speed of the beam
-            this.beamFollowSpeed *= 4f;
+            // Increase of 50% the beam size
+            this.beamSize *= 1.5f;
         }
         else if (this.level == 3)
         {
-            // Increase of 50% the beam size
-            this.beamSize *= 1.5f;
+            // Increase the speed of the beam
+            this.beamFollowSpeed *= 4f;
         }
     }
 }

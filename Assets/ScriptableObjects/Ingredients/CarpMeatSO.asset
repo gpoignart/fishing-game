@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CarpMeatSO
   m_EditorClassIdentifier: 
   ingredientName: Carp Meat
-  playerQuantityPossessed: 2
+  playerQuantityPossessed: 0
   sprite: {fileID: 21300000, guid: 7891f71a8885e3042950462511b61ba4, type: 3}

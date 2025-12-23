@@ -12,7 +12,7 @@ public class MysticFishSO : FishSO
         this.spawnChance = 3;
         this.catchingDifficulties = new FishCatchingDifficulty[]
         {
-            new FishCatchingDifficulty(time: GameManager.Instance.TimeOfDayRegistry.nightSO, safeZoneMoveSpeed: 180f, requiredTimeInsideZone: 3f, allowedTimeOutsideZone: 2f, safeZoneWidth: 80f)
+            new FishCatchingDifficulty(time: GameManager.Instance.TimeOfDayRegistry.nightSO, safeZoneMoveSpeed: 190f, requiredTimeInsideZone: 3.2f, allowedTimeOutsideZone: 3f, safeZoneWidth: 80f)
         };
     }
 }

@@ -28,9 +28,9 @@ public class BoatSO : PlayerEquipmentSO
         }
         else if (this.level == 3)
         {
-            // Add 10% of spawn chance for rare fish
-            GameManager.Instance.FishRegistry.midnightCatfishSO.spawnChance += 10;
-            GameManager.Instance.FishRegistry.mysticFishSO.spawnChance += 10;
+            // Add 12% of spawn chance for rare fish
+            GameManager.Instance.FishRegistry.midnightCatfishSO.spawnChance += 12;
+            GameManager.Instance.FishRegistry.mysticFishSO.spawnChance += 12;
         }
     }
 }

@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677a1625000f2fb40907efb1b5d5e705, type: 3}
   m_Name: FlashlightSO
   m_EditorClassIdentifier: 
-  equipmentName: Flashlight
+  playerEquipmentName: Flashlight
   level: 1
+  detailsPerLevel:
+  - No bonus
+  - Increases beam's size
+  - Increases beam's speed
+  beamSize: {x: 130, y: 130}
+  beamFollowSpeed: 1

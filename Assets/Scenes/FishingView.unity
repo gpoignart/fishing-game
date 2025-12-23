@@ -1379,6 +1379,7 @@ MonoBehaviour:
   fishingRodTip: {fileID: 1466426081}
   playerWaitingSprite: {fileID: 21300000, guid: 8087ce5ae694aa7499d22c7c2c2ae3b3, type: 3}
   playerCatchingSprite: {fileID: 21300000, guid: c6f32fd867baaa0489f6b386b37bd046, type: 3}
+  playerAfraidSprite: {fileID: 21300000, guid: 8087ce5ae694aa7499d22c7c2c2ae3b3, type: 3}
 --- !u!212 &553010390
 SpriteRenderer:
   m_ObjectHideFlags: 0

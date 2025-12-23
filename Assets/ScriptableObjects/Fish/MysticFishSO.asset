@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishName: MysticFish
   sprite: {fileID: 21300000, guid: dc74a42d7440ec44fa67dc9b4fed5f5b, type: 3}
-  spawnMaps: []
-  spawnTimes: []
-  drops: []
-  spawnChance: 5
+  spawnMaps:
+  - {fileID: 11400000, guid: 6fbcdfdbf7d32e742ac214e102065a01, type: 2}
+  spawnTimes:
+  - {fileID: 11400000, guid: 5169ba54d93560e43b170091f8176e18, type: 2}
+  drops:
+  - {fileID: 11400000, guid: 67d8bb5579e8d7f4f8101a73194d3513, type: 2}
+  spawnChance: 3
   staySpawnedTime: 0
   catchingDifficulties:
-  - time: {fileID: 0}
-    safeZoneMoveSpeed: 200
-    requiredTimeInsideZone: 3
-    allowedTimeOutsideZone: 2
+  - time: {fileID: 11400000, guid: 5169ba54d93560e43b170091f8176e18, type: 2}
+    safeZoneMoveSpeed: 190
+    requiredTimeInsideZone: 3.2
+    allowedTimeOutsideZone: 3
     safeZoneWidth: 80

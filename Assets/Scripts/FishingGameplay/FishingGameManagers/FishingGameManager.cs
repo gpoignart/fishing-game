@@ -279,6 +279,13 @@ public class FishingGameManager : MonoBehaviour
         FishSpawner.Instance.StartFishSpawner();
     }
 
+    // Called by the game manager when a monster spawn
+    public void OnMonsterApproach()
+    {
+        FishingUIManager.Instance.DisableInventoryButton();
+        PlayerController.Instance.OnMonsterApproach();
+    }
+
 
     // HANDLE GAME STATES
 

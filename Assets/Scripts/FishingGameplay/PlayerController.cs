@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform fishingRodTip;
     [SerializeField] private Sprite playerWaitingSprite;
     [SerializeField] private Sprite playerCatchingSprite;
+    [SerializeField] private Sprite playerAfraidSprite;
 
     // Parameters
     private float detectionRadius = 0.4f;
@@ -72,6 +73,11 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sprite = playerCatchingSprite;
         yield return new WaitForSeconds(duration);
         spriteRenderer.sprite = playerWaitingSprite;
+    }
+
+    public void OnMonsterApproach()
+    {
+        spriteRenderer.sprite = playerAfraidSprite;
     }
 
     // Calculate edges of screen to force the player inside when moving

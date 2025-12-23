@@ -100,23 +100,23 @@ public class RecipeBookGameManager : MonoBehaviour
         }
     }
 
-    // Return 0 if available, 1 if equipment is level 1 and recipe is level 3, 2 if not enough ingredients, 3 if the recipe has already been used
+    // Return 0 if available, 1 if not enough ingredients, 2 if equipment is level 1 and recipe is level 3, 3 if the recipe has already been used
     private int checkRecipeAvailable(RecipeSO recipe)
     {
         // Recipe already used
         if (recipe.hasAlreadyBeenUsed) { return 3; }
         
+        // Recipe for a 3 upgrade if a 2 upgrade has not been made (the final recipe is an exception)
+        if (!recipe.isFinalRecipe && recipe.upgradesEquipment.level != 2 && recipe.upgradesToLevel == 3) { return 2; }
+
         // Check if enough ingredients
         foreach (var recipeIngredient in recipe.ingredients)
         {
             if (recipeIngredient.ingredientSO.playerQuantityPossessed < recipeIngredient.quantity)
             {
-                return 2;
+                return 1;
             }
         }
-
-        // Recipe for a 3 upgrade if a 2 upgrade has not been made (the final recipe is an exception)
-        if (!recipe.isFinalRecipe && recipe.upgradesEquipment.level != 2 && recipe.upgradesToLevel == 3) { return 1; }
 
         return 0;
     }

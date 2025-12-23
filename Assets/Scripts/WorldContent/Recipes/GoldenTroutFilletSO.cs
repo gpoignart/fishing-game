@@ -9,8 +9,8 @@ public class GoldenTroutFilletSO : RecipeSO
         this.description = "Upgrades Flashlight to level 3:\n" + GameManager.Instance.PlayerEquipmentRegistry.flashlightSO.detailsPerLevel[2];
         this.ingredients = new RecipeIngredient[]
         {
-            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.troutMeatSO, quantity: 10),
-            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.shinyFinSO, quantity: 10),
+            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.troutMeatSO, quantity: 15),
+            new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.shinyFinSO, quantity: 15),
             new RecipeIngredient(ingredientSO: GameManager.Instance.IngredientRegistry.glimmeringScaleSO, quantity: 5)
         };
         this.hasAlreadyBeenUsed = false;

@@ -122,12 +122,12 @@ public class RecipeBookUIManager : MonoBehaviour
         else if (currentRecipeAvailableCode == 1)
         {
             makeRecipeButton.interactable = false;
-            instructionText.text = "Equipment needs to be level 2 before.";
+            instructionText.text = "Not enough ingredients.";
         }
         else if (currentRecipeAvailableCode == 2)
         {
             makeRecipeButton.interactable = false;
-            instructionText.text = "Not enough ingredients.";
+            instructionText.text = "Equipment needs to be level 2 before.";
         }
         else if (currentRecipeAvailableCode == 3)
         {

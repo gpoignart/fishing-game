@@ -13,7 +13,7 @@ public class CarpSO : FishSO
         this.catchingDifficulties = new FishCatchingDifficulty[]
         {
             new FishCatchingDifficulty(time: GameManager.Instance.TimeOfDayRegistry.daySO, safeZoneMoveSpeed: 80f, requiredTimeInsideZone: 2f,allowedTimeOutsideZone: 3f, safeZoneWidth: 200f),
-            new FishCatchingDifficulty(time: GameManager.Instance.TimeOfDayRegistry.nightSO, safeZoneMoveSpeed: 100f, requiredTimeInsideZone: 2.5f,allowedTimeOutsideZone: 2.5f, safeZoneWidth: 200f)
+            new FishCatchingDifficulty(time: GameManager.Instance.TimeOfDayRegistry.nightSO, safeZoneMoveSpeed: 100f, requiredTimeInsideZone: 2.5f,allowedTimeOutsideZone: 3f, safeZoneWidth: 200f)
         };
     }
 }

@@ -12,7 +12,7 @@ public class TroutSO : FishSO
         this.spawnChance = 70;
         this.catchingDifficulties = new FishCatchingDifficulty[]
         {
-            new FishCatchingDifficulty(time: GameManager.Instance.TimeOfDayRegistry.daySO, safeZoneMoveSpeed: 100f, requiredTimeInsideZone: 1.5f,allowedTimeOutsideZone: 3.5f, safeZoneWidth: 170f),
+            new FishCatchingDifficulty(time: GameManager.Instance.TimeOfDayRegistry.daySO, safeZoneMoveSpeed: 100f, requiredTimeInsideZone: 1.5f,allowedTimeOutsideZone: 3f, safeZoneWidth: 170f),
             new FishCatchingDifficulty(time: GameManager.Instance.TimeOfDayRegistry.nightSO, safeZoneMoveSpeed: 120f, requiredTimeInsideZone: 2f,allowedTimeOutsideZone: 3f, safeZoneWidth: 170f)
         };
     }

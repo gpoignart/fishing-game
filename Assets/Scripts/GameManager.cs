@@ -83,8 +83,8 @@ public class GameManager : MonoBehaviour
     public bool IsGameEnded => isGameEnded;
 
     // Internal parameters
-    private int monsterSpawnChance = 60;
-    private float monsterSpawnInterval = 10f;
+    [SerializeField] private int monsterSpawnChance = 60;
+    [SerializeField] private float monsterSpawnInterval = 10f;
 
     // Internal attributes
     private bool canChangeView = true;
@@ -207,11 +207,45 @@ public class GameManager : MonoBehaviour
     {
         if (!canChangeView) { return; }
 
-        if (currentView == GameView.FishingView) { AudioManager.Instance.StopFishingRodPullSFX(); }
+        // Exit view
+        switch (currentView)
+        {
+            case GameView.Main:
+                break;
 
+            case GameView.EventView:
+                break;
+
+            case GameView.TransitionView:
+                break;
+
+            case GameView.MapSelectionView:
+                break;
+
+            case GameView.InventoryView:
+                break;
+
+            case GameView.FishingView:
+                AudioManager.Instance.StopFishingRodPullSFX(); // In case exit when sound playing
+                break;
+
+            case GameView.MonsterView:
+                Cursor.lockState = CursorLockMode.None; // In case exit when locked
+                Cursor.visible = true;
+                break;
+
+            case GameView.EndScreenView:
+                break;
+
+            case GameView.CreditsView:
+                break;
+        }
+
+        // Switch view
         lastView = currentView;
         currentView = newView;
 
+        // Enter view
         switch (currentView)
         {
             case GameView.Main:
@@ -599,8 +633,8 @@ public class GameManager : MonoBehaviour
             // Player can't change view
             canChangeView = false;
 
-            // Disable inventory button so the player understand he can't change view
-            FishingUIManager.Instance.DisableInventoryButton();
+            // Inform the fishing game manager that a monster approach
+            FishingGameManager.Instance.OnMonsterApproach();
 
             // Right side for the tutorial
             monsterApparitionSide = 1;
@@ -620,8 +654,8 @@ public class GameManager : MonoBehaviour
             // Player can't change view
             canChangeView = false;
 
-            // Disable inventory button so the player understand he can't change view
-            FishingUIManager.Instance.DisableInventoryButton();
+            // Inform the fishing game manager that a monster approach
+            FishingGameManager.Instance.OnMonsterApproach();
 
             // Choose monster apparition side
             int side = Random.Range(0, 2);

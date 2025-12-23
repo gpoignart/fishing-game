@@ -17,5 +17,5 @@ MonoBehaviour:
   dayTopBackgroundSprite: {fileID: 21300000, guid: 13662fadf6cd6c941b2bd54f41b5fd67, type: 3}
   nightBottomBackgroundSprite: {fileID: 21300000, guid: ae9512d810302ca4bbc50c30d79abdf4, type: 3}
   nightTopBackgroundSprite: {fileID: 21300000, guid: 61857fb0c970d37489fde7bd5403e170, type: 3}
-  dayLogoSprite: {fileID: 21300000, guid: 996cbed4b7cfe104ab1c947d3fc83d51, type: 3}
-  nightLogoSprite: {fileID: 21300000, guid: 48a41ad27098b374ebb0da2763f0a01d, type: 3}
+  dayLogoSprite: {fileID: 21300000, guid: 3c8200a57e794dc449f37b9a84e96ebd, type: 3}
+  nightLogoSprite: {fileID: 21300000, guid: 327aa386b43b5d24180e8261a3e7b16f, type: 3}

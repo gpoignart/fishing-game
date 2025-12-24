@@ -30,7 +30,6 @@ public class FlashlightController : MonoBehaviour
     public void StartFlashlight()
     {
         StartCoroutine(CenterMouseCoroutine());
-        Cursor.visible = false;
 
         beam.sizeDelta = GameManager.Instance.PlayerEquipmentRegistry.flashlightSO.beamSize;
         ShowFlashlightBeam();

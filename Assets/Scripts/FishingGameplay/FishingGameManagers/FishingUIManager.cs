@@ -34,10 +34,7 @@ public class FishingUIManager : MonoBehaviour
     private GameObject commandsPanel;
 
     [SerializeField]
-    private GameObject extendCommandsButton;
-
-    [SerializeField]
-    private GameObject collapseCommandsButton;
+    private GameObject commandsButton;
 
     [SerializeField]
     private GameObject extendedCommands;
@@ -218,9 +215,8 @@ public class FishingUIManager : MonoBehaviour
 
     public void InitializeCommandsPanel()
     {
-        HideCollapseCommandsButton();
         HideExtendedCommands();
-        ShowExtendCommandsButton();
+        ShowCommandsButton();
     }
 
     public void HideCommandsPanel()
@@ -228,26 +224,15 @@ public class FishingUIManager : MonoBehaviour
         commandsPanel.SetActive(false);
     }
 
-    // Extend Commands Button
-    public void ShowExtendCommandsButton()
+    // Commands Button
+    public void ShowCommandsButton()
     {
-        extendCommandsButton.SetActive(true);
+        commandsButton.SetActive(true);
     }
 
-    public void HideExtendCommandsButton()
+    public void HideCommandsButton()
     {
-        extendCommandsButton.SetActive(false);
-    }
-
-    // Collapse Commands Button
-    public void ShowCollapseCommandsButton()
-    {
-        collapseCommandsButton.SetActive(true);
-    }
-
-    public void HideCollapseCommandsButton()
-    {
-        collapseCommandsButton.SetActive(false);
+        commandsButton.SetActive(false);
     }
 
     // Extended Commands
@@ -255,11 +240,12 @@ public class FishingUIManager : MonoBehaviour
     {
         extendedCommands.SetActive(true);
     }
-
+    
     public void HideExtendedCommands()
     {
         extendedCommands.SetActive(false);
     }
+
 
     // Helping functions
     

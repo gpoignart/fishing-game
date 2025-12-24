@@ -174,23 +174,19 @@ public class FishingGameManager : MonoBehaviour
         AudioManager.Instance.PlayPressingButtonSFX();
     }
 
-    // Called when the player clicks extend commands button
-    public void OnExtendCommandsButtonPressed()
+    // Called when player hover commands button
+    public void OnCommandsButtonHovered()
     {
         if (GameManager.Instance.IsFishingTutorialEnabled) { return; }
 
-        FishingUIManager.Instance.HideExtendCommandsButton();
-        FishingUIManager.Instance.ShowCollapseCommandsButton();
         FishingUIManager.Instance.ShowExtendedCommands();
     }
 
-    // Called when the player clicks collapse commands button
-    public void OnCollapseCommandsButtonPressed()
+    // Called when player exit hover commands button
+    public void OnCommandsButtonExitHovered()
     {
         if (GameManager.Instance.IsFishingTutorialEnabled) { return; }
 
-        FishingUIManager.Instance.ShowExtendCommandsButton();
-        FishingUIManager.Instance.HideCollapseCommandsButton();
         FishingUIManager.Instance.HideExtendedCommands();
     }
 
@@ -241,6 +237,9 @@ public class FishingGameManager : MonoBehaviour
         if (GameManager.Instance.IsFishingTutorialEnabled && currentTutorialState <= FishingTutorialState.Fishing) { return; }
 
         ChangeState(FishingGameState.Moving);
+
+        // Play catch animation
+        StartCoroutine(PlayerController.Instance.OnLoseFishAnimation(2f));
 
         // Play lose fish SFX
         AudioManager.Instance.PlayFishSwamAwaySFX();

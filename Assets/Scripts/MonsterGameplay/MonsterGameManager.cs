@@ -23,7 +23,7 @@ public class MonsterGameManager : MonoBehaviour
     [SerializeField] private Transform monsterContainer;
     
     // Parameters
-    [SerializeField] private float loseTime = 2.5f;
+    [SerializeField] private float loseTime = 2f;
     private float warningDuration = 0.7f;
     private float winMessageDuration = 2f;
 

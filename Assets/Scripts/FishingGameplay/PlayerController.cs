@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Sprite playerWaitingSprite;
     [SerializeField] private Sprite playerCatchingSprite;
     [SerializeField] private Sprite playerScaredSprite;
+    [SerializeField] private Sprite playerLoseFishSprite;
 
     // Parameters
     private float detectionRadius = 0.4f;
@@ -86,7 +87,7 @@ public class PlayerController : MonoBehaviour
         Vector2 scale = fishCaught.transform.localScale;
         scale.x = Mathf.Abs(scale.x) * (facingLeft ? 1f : -1f);
         fishCaught.transform.localScale = scale;
-        
+
         fishCaught.GetComponent<SpriteRenderer>().sprite = fishCaughtSO.sprite;
 
         yield return new WaitForSeconds(duration);
@@ -94,6 +95,16 @@ public class PlayerController : MonoBehaviour
         // Destroy the fish
         Destroy(fishCaught);
         fishCaught = null;
+        spriteRenderer.sprite = playerWaitingSprite;
+    }
+
+    public IEnumerator OnLoseFishAnimation(float duration)
+    {
+        // Destroy the fish caught before changing sprite
+        if (fishCaught != null) { Destroy(fishCaught); }
+
+        spriteRenderer.sprite = playerLoseFishSprite;
+        yield return new WaitForSeconds(duration);
         spriteRenderer.sprite = playerWaitingSprite;
     }
 

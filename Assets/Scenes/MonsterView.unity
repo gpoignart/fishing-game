@@ -839,9 +839,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a7f5c7c157aae45a69d3ab53a9c62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 668450778}
   beam: {fileID: 502240542}
   timerRing: {fileID: 37206324}
-  cam: {fileID: 668450778}
+  startColorTimerRing: {r: 1, g: 1, b: 0.45490196, a: 0.10980392}
+  endColorTimerRing: {r: 1, g: 0.1817153, b: 0.07232696, a: 0.10980392}
 --- !u!4 &584375662
 Transform:
   m_ObjectHideFlags: 0

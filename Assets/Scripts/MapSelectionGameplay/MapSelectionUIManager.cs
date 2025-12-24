@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class MapSelectionUIManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MapSelectionUIManager : MonoBehaviour
     // UI elements
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Image[] mapButtonImages;
+    [SerializeField] private Transform[] mapIngredientBubbleContainers;
     [SerializeField] private TextMeshProUGUI[] mapButtonTexts;
     [SerializeField] private TextMeshProUGUI dayAndNightCounterText;
     [SerializeField] private TextMeshProUGUI chooseAMapText;
@@ -46,12 +48,6 @@ public class MapSelectionUIManager : MonoBehaviour
         }
     }
 
-    public void UpdateMapButton(int index, string mapName, Sprite mapLogo)
-    {
-        mapButtonTexts[index].text = mapName;
-        mapButtonImages[index].sprite = mapLogo;
-    }
-
     public void UpdateDayAndNightCounterText()
     {
         if (GameManager.Instance.CurrentTimeOfDay == GameManager.Instance.TimeOfDayRegistry.daySO)
@@ -61,6 +57,48 @@ public class MapSelectionUIManager : MonoBehaviour
         else
         {
             dayAndNightCounterText.text = $"NIGHT {GameManager.Instance.NightsCount}";
+        }
+    }
+
+    public void UpdateMapButton(int index, string mapName, Sprite mapLogo)
+    {
+        mapButtonTexts[index].text = mapName;
+        mapButtonImages[index].sprite = mapLogo;
+    }
+
+    public void UpdateIngredientBubbles(int mapIndex, List<IngredientSO> ingredients)
+    {
+        Transform bubbleContainer = mapIngredientBubbleContainers[mapIndex];
+
+        int bubbleCount = bubbleContainer.childCount;
+
+        for (int i = 0; i < bubbleCount; i++)
+        {
+            Transform bubble = bubbleContainer.GetChild(i);
+
+            // Set bubble color
+            if (GameManager.Instance.CurrentTimeOfDay == GameManager.Instance.TimeOfDayRegistry.daySO)
+            {
+                bubble.GetComponent<Image>().color = GameManager.Instance.MapRegistry.AllMaps[mapIndex].dayBubbleColor;
+            }
+            else
+            {
+                bubble.GetComponent<Image>().color = GameManager.Instance.MapRegistry.AllMaps[mapIndex].nightBubbleColor;
+            }
+
+            // Set ingredients images
+            Image ingredientImage = bubble.GetChild(0).GetComponent<Image>();
+
+            if (i < ingredients.Count)
+            {
+                ingredientImage.sprite = ingredients[i].sprite;
+                bubble.gameObject.SetActive(true);
+            }
+            else
+            {
+                // Not enough ingredient, we desactive the bubble
+                bubble.gameObject.SetActive(false);
+            }
         }
     }
 

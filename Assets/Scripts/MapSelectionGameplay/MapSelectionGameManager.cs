@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 public class MapSelectionGameManager : MonoBehaviour
 {
@@ -32,6 +34,8 @@ public class MapSelectionGameManager : MonoBehaviour
         MapSelectionUIManager.Instance.UpdateBackgroundImage();
         MapSelectionUIManager.Instance.UpdateDayAndNightCounterText();
         MapSelectionUIManager.Instance.HideExplanationPanel();
+
+        // Update Map Button & ingredient bubbles
         for (int i = 0; i < GameManager.Instance.MapRegistry.AllMaps.Length; i++)
         {
             if (GameManager.Instance.CurrentTimeOfDay == GameManager.Instance.TimeOfDayRegistry.daySO)
@@ -42,6 +46,13 @@ public class MapSelectionGameManager : MonoBehaviour
             {
                 MapSelectionUIManager.Instance.UpdateMapButton(i, GameManager.Instance.MapRegistry.AllMaps[i].mapName, GameManager.Instance.MapRegistry.AllMaps[i].nightLogoSprite);   
             }
+        }
+
+        // Update ingredient bubbles
+        for (int i = 0; i < GameManager.Instance.MapRegistry.AllMaps.Length; i++)
+        {
+            List<IngredientSO> ingredients = GameManager.Instance.IngredientRegistry.GetAvailableIngredientsFromMap(GameManager.Instance.MapRegistry.AllMaps[i], GameManager.Instance.CurrentTimeOfDay);
+            MapSelectionUIManager.Instance.UpdateIngredientBubbles(i, ingredients);
         }
 
         // Gives explanations the first time we enter the map

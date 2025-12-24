@@ -19,3 +19,5 @@ MonoBehaviour:
   nightTopBackgroundSprite: {fileID: 21300000, guid: 8933e9ce5e44ce9429e2eaf0bc93d11c, type: 3}
   dayLogoSprite: {fileID: 21300000, guid: 996cbed4b7cfe104ab1c947d3fc83d51, type: 3}
   nightLogoSprite: {fileID: 21300000, guid: 48a41ad27098b374ebb0da2763f0a01d, type: 3}
+  dayBubbleColor: {r: 0.40000004, g: 0.9058824, b: 0.7686275, a: 1}
+  nightBubbleColor: {r: 0.10980393, g: 0.4431373, b: 0.4156863, a: 1}

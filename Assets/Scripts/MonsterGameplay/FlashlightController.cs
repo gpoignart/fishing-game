@@ -6,9 +6,11 @@ public class FlashlightController : MonoBehaviour
 {
     public static FlashlightController Instance { get; private set; }
 
+    [SerializeField] private Transform cam; // Main Camera
     [SerializeField] private RectTransform beam; // UI flashlight beam (Image)
     [SerializeField] private Image timerRing;
-    [SerializeField] private Transform cam; // Main Camera
+    [SerializeField] private Color startColorTimerRing;
+    [SerializeField] private Color endColorTimerRing;
 
     // Parameters
     private float hitRadius = 150f; // Distance threshold for hit
@@ -56,12 +58,14 @@ public class FlashlightController : MonoBehaviour
     private void ResetTimerRing()
     {
         timerRing.fillAmount = 1f;
+        timerRing.color = startColorTimerRing;
     }
 
     private void UpdateTimerRing(float loseTimer, float loseTime)
     {
         float fill = Mathf.Clamp01(1f - (loseTimer / loseTime));
         timerRing.fillAmount = fill;
+        timerRing.color = Color.Lerp(endColorTimerRing, startColorTimerRing, fill);
     }
 
     // Show and hide flashlight beam

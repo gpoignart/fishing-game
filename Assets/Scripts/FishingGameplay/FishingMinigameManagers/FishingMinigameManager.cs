@@ -40,7 +40,7 @@ public class FishingMinigameManager : MonoBehaviour
         timeInsideZone = 0f;
         timeOutsideZone = 0f;
 
-        // Initialize difficulty depending the fish and the timeOfDay
+        // Initialize difficulty depending on the fish and the timeOfDay
         difficulty = fish.fishSO.catchingDifficulties.FirstOrDefault(t => t.time == GameManager.Instance.CurrentTimeOfDay);
 
         // Set up needle boundaries positions
@@ -50,7 +50,6 @@ public class FishingMinigameManager : MonoBehaviour
 
         // Start and target position for needle
         FishingMinigameUIManager.Instance.SetNeedlePosition(GetRandomNeedlePosition());
-
         needleTargetPosition = needleLeftBoundaryPosition;
 
         // Adapt the safeZone width to the difficulty
@@ -63,6 +62,9 @@ public class FishingMinigameManager : MonoBehaviour
 
         // Safe zone picks a random target
         safeZoneTargetPosition = GetRandomSafeZonePosition();
+
+        // Initialize the timer bar in UI
+        FishingMinigameUIManager.Instance.InitializeProgressBar();
     }
 
     public void UpdateMiniGame()
@@ -70,7 +72,7 @@ public class FishingMinigameManager : MonoBehaviour
         // Safe zone movements
         FishingMinigameUIManager.Instance.MoveSafeZone(safeZoneTargetPosition, difficulty.safeZoneMoveSpeed * Time.deltaTime);
 
-        // When the safeZone reach its target, it changes randomly of target
+        // When the safeZone reaches its target, it changes randomly
         if (Vector2.Distance(FishingMinigameUIManager.Instance.GetSafeZonePosition(), safeZoneTargetPosition) < 0.1f)
         {
             safeZoneTargetPosition = GetRandomSafeZonePosition();
@@ -104,8 +106,11 @@ public class FishingMinigameManager : MonoBehaviour
                 FishingGameManager.Instance.FishingMinigameFail();
             }
         }
+
+        // Update timer bar in UI
+        FishingMinigameUIManager.Instance.UpdateProgressBar(timeInsideZone, difficulty.requiredTimeInsideZone, timeOutsideZone, difficulty.allowedTimeOutsideZone);
     }
-    
+
     private Vector2 GetRandomSafeZonePosition()
     {
         float randomX = Random.Range(safeZoneLeftBoundaryPosition.x, safeZoneRightBoundaryPosition.x);
@@ -118,5 +123,3 @@ public class FishingMinigameManager : MonoBehaviour
         return new Vector2(randomX, FishingMinigameUIManager.Instance.GetNeedlePosition().y);
     }
 }
-
-

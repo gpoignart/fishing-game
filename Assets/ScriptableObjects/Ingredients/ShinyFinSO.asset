@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ShinyFinSO
   m_EditorClassIdentifier: 
   ingredientName: Shiny Fin
-  playerQuantityPossessed: 60
+  playerQuantityPossessed: 63
   sprite: {fileID: 21300000, guid: ef2897ea1d779b548b4aa8af54c25753, type: 3}

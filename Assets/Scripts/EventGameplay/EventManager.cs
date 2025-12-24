@@ -13,7 +13,7 @@ public class EventManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
 
     // Parameters
-    private float delay = 0.05f;
+    private float delay = 0.03f;
 
     // Internal attributes
     private int indexOfText;

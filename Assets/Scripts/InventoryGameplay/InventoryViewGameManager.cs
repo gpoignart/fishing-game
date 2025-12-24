@@ -29,10 +29,30 @@ public class InventoryViewGameManager : MonoBehaviour
     {
         InventoryViewUIManager.Instance.HideRecipeBookStateUI();
         InventoryViewUIManager.Instance.ShowInventoryStateUI();
-        InventoryViewUIManager.Instance.HideIngredientPanelUI();
 
         // First state
         ChangeState(InventoryViewGameState.Inventory);
+    }
+
+    void Update()
+    {   
+        // Exit when pressing escape key
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnExitButtonPressed();
+        }
+
+        // Previous page when clicking left arrow
+        if (currentState == InventoryViewGameState.RecipeBook && Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            RecipeBookGameManager.Instance.OnPreviousButtonPressed();
+        }
+
+        // Next page when clicking right arrow
+        if (currentState == InventoryViewGameState.RecipeBook && Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            RecipeBookGameManager.Instance.OnNextButtonPressed();
+        }
     }
 
     // Exit inventory
@@ -52,6 +72,7 @@ public class InventoryViewGameManager : MonoBehaviour
     // See Recipe Book
     public void OnSeeRecipeBookButtonPressed()
     { 
+        GameManager.Instance.RecipeBookOpened();
         ChangeState(InventoryViewGameState.RecipeBook);
         AudioManager.Instance.PlayPressingButtonSFX();
     }

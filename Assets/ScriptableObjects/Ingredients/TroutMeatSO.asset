@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TroutMeatSO
   m_EditorClassIdentifier: 
   ingredientName: Trout Meat
-  playerQuantityPossessed: 59
+  playerQuantityPossessed: 49
   sprite: {fileID: 21300000, guid: ffa8eab00b91c974ea9fa1f2f6ba8bb4, type: 3}

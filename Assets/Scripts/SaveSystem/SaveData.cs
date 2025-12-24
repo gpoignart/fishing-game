@@ -11,6 +11,7 @@ public class SaveData
     public bool isFishingTutorialEnabled;
     public bool isMapSelectionExplanationEnabled;
     public bool isRecipeBookUnlocked;
+    public bool isRecipeBookOpened;
     public bool isGameEnded;
     public List<IngredientSaveData> ingredients = new();
     public List<PlayerEquipmentSaveData> playerEquipments = new();

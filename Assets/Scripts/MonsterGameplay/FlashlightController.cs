@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class FlashlightController : MonoBehaviour
@@ -6,6 +7,7 @@ public class FlashlightController : MonoBehaviour
     public static FlashlightController Instance { get; private set; }
 
     [SerializeField] private RectTransform beam; // UI flashlight beam (Image)
+    [SerializeField] private Image timerRing;
     [SerializeField] private Transform cam; // Main Camera
 
     // Parameters
@@ -33,16 +35,33 @@ public class FlashlightController : MonoBehaviour
         Cursor.visible = false;
 
         beam.sizeDelta = GameManager.Instance.PlayerEquipmentRegistry.flashlightSO.beamSize;
+        timerRing.rectTransform.sizeDelta = GameManager.Instance.PlayerEquipmentRegistry.flashlightSO.beamTimerSize;
         ShowFlashlightBeam();
+
         beamParent = beam.parent as RectTransform;
         camStartX = cam.localPosition.x;
+        
+        ResetTimerRing();
     }
 
-    public void UpdateFlashlight()
+    public void UpdateFlashlight(float loseTimer, float loseTime)
     {
         UpdateBeamPosition();
         UpdateCameraPan();
         CheckHitMonster();
+        UpdateTimerRing(loseTimer, loseTime);
+    }
+
+    // Timer ring
+    private void ResetTimerRing()
+    {
+        timerRing.fillAmount = 1f;
+    }
+
+    private void UpdateTimerRing(float loseTimer, float loseTime)
+    {
+        float fill = Mathf.Clamp01(1f - (loseTimer / loseTime));
+        timerRing.fillAmount = fill;
     }
 
     // Show and hide flashlight beam

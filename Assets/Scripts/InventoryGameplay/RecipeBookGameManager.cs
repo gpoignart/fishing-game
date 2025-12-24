@@ -30,7 +30,7 @@ public class RecipeBookGameManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public void Start()
     {
         UpdateCurrentRecipes();
         UpdateUI();
@@ -52,6 +52,8 @@ public class RecipeBookGameManager : MonoBehaviour
 
     public void OnPreviousButtonPressed()
     {
+        if (currentPageIndex <= 0) { return; }
+
         AudioManager.Instance.PlayTurnRecipeBookPageSFX();
         currentPageIndex -= 2;
         UpdateCurrentRecipes();
@@ -60,6 +62,8 @@ public class RecipeBookGameManager : MonoBehaviour
 
     public void OnNextButtonPressed()
     {
+        if (currentPageIndex + 2 >= GameManager.Instance.RecipeRegistry.AllRecipes.Length) { return; }
+
         AudioManager.Instance.PlayTurnRecipeBookPageSFX();
         currentPageIndex += 2;
         UpdateCurrentRecipes();

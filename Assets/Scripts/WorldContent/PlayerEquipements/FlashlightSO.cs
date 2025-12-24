@@ -4,6 +4,7 @@ using UnityEngine;
 public class FlashlightSO : PlayerEquipmentSO
 {
     public Vector2 beamSize;
+    public Vector2 beamTimerSize;
     public float beamFollowSpeed;
 
     public override void Initialize()
@@ -16,8 +17,9 @@ public class FlashlightSO : PlayerEquipmentSO
             "Increases beam's size",
             "Increases beam's speed"
         };
-        this.beamSize = new Vector2(130f, 130f);
-        this.beamFollowSpeed = 1.5f;
+        this.beamSize = new Vector2(100f, 100f);
+        this.beamTimerSize = beamSize * 1.17f;
+        this.beamFollowSpeed = 1f;
     }
 
     public override void UpgradeTo(int newLevel)
@@ -25,8 +27,9 @@ public class FlashlightSO : PlayerEquipmentSO
         this.level = newLevel;
         if (this.level == 2)
         {
-            // Increase of 50% the beam size
+            // Increase of 50% the beam size and timer size
             this.beamSize *= 1.5f;
+            this.beamTimerSize *= 1.5f;
         }
         else if (this.level == 3)
         {

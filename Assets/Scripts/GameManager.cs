@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     private bool isFishingTutorialEnabled;
     private bool isMapSelectionExplanationEnabled;
     private bool isRecipeBookUnlocked;
+    private bool isRecipeBookOpened;
     private Vector2 fishingPlayerPosition;
     private Vector2 fishingPlayerOrientation;
     private int monsterApparitionSide;
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
     public bool IsFishingTutorialEnabled => isFishingTutorialEnabled;
     public bool IsMapSelectionExplanationEnabled => isMapSelectionExplanationEnabled;
     public bool IsRecipeBookUnlocked => isRecipeBookUnlocked;
+    public bool IsRecipeBookOpened => isRecipeBookOpened;
     public Vector2 FishingPlayerPosition => fishingPlayerPosition;
     public Vector2 FishingPlayerOrientation => fishingPlayerOrientation;
     public int MonsterApparitionSide => monsterApparitionSide;
@@ -156,6 +158,7 @@ public class GameManager : MonoBehaviour
         isFishingTutorialEnabled = true;
         isMapSelectionExplanationEnabled = true;
         isRecipeBookUnlocked = false;
+        isRecipeBookOpened = false;
         isGameEnded = false;
         fishingPlayerPosition = defaultFishingPlayerPosition;
         fishingPlayerOrientation = defaultFishingPlayerOrientation;
@@ -403,6 +406,12 @@ public class GameManager : MonoBehaviour
     public void EndOfMapSelectionExplanation()
     {
         isMapSelectionExplanationEnabled = false;
+    }
+
+    // Called in the inventory view when the recipe book is opened
+    public void RecipeBookOpened()
+    {
+        isRecipeBookOpened = true;
     }
 
     // Called when clicking on the inventory button
@@ -694,6 +703,7 @@ public class GameManager : MonoBehaviour
         data.isFishingTutorialEnabled = isFishingTutorialEnabled;
         data.isMapSelectionExplanationEnabled = isMapSelectionExplanationEnabled;
         data.isRecipeBookUnlocked = isRecipeBookUnlocked;
+        data.isRecipeBookOpened = isRecipeBookOpened;
         data.isGameEnded = isGameEnded;
 
         data.ingredients = ingredientRegistry.AllIngredients
@@ -738,6 +748,7 @@ public class GameManager : MonoBehaviour
         isFishingTutorialEnabled = data.isFishingTutorialEnabled;
         isMapSelectionExplanationEnabled = data.isMapSelectionExplanationEnabled;
         isRecipeBookUnlocked = data.isRecipeBookUnlocked;
+        isRecipeBookOpened = data.isRecipeBookOpened;
         isGameEnded = data.isGameEnded;
 
         foreach (var ingredientData in data.ingredients)

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private float minX, maxX;
     private Vector3 firstPosition;
     private SpriteRenderer spriteRenderer;
+    private GameObject fishCaught = null;
 
     // Make this class a singleton
     private void Awake()
@@ -78,8 +79,8 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sprite = playerCatchingSprite;
 
         // Instantiate fish
-        GameObject fishCaught = Instantiate(fishCaughtPrefab, fishCaughtAnchor.position, fishCaughtPrefab.transform.rotation, fishCaughtAnchor);
-        
+        fishCaught = Instantiate(fishCaughtPrefab, fishCaughtAnchor.position, fishCaughtPrefab.transform.rotation, fishCaughtAnchor);
+
         // Keep the fish toward left
         bool facingLeft = transform.localScale.x > 0;
         Vector2 scale = fishCaught.transform.localScale;
@@ -90,12 +91,17 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(duration);
 
+        // Destroy the fish
         Destroy(fishCaught);
+        fishCaught = null;
         spriteRenderer.sprite = playerWaitingSprite;
     }
 
     public void OnMonsterApproach()
     {
+        // Destroy the fish caught before changing sprite
+        if (fishCaught != null) { Destroy(fishCaught); }
+
         spriteRenderer.sprite = playerScaredSprite;
     }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FishingMinigameUIManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class FishingMinigameUIManager : MonoBehaviour
     [SerializeField] private RectTransform rightBoundaryUI;
     [SerializeField] private RectTransform safeZoneUI;
     [SerializeField] private RectTransform needleUI;
+    [SerializeField] private Image fillRight; // Progress bar right
+    [SerializeField] private Image fillLeft;  // Progress bar left
+    
 
     private void Awake()
     {
@@ -61,5 +65,36 @@ public class FishingMinigameUIManager : MonoBehaviour
         float safeZoneX = safeZoneUI.anchoredPosition.x;
 
         return needleX >= safeZoneX - halfWidth && needleX <= safeZoneX + halfWidth;
+    }
+
+    // Initialize Progress Bar
+    public void InitializeProgressBar()
+    {
+        if (fillRight)
+        {
+            fillRight.fillAmount = 0f;
+        }
+
+        if (fillLeft)
+        {
+            fillLeft.fillAmount = 0f;
+        }
+    }
+
+    // Update progress bar
+    public void UpdateProgressBar(float timeInsideZone, float requiredTimeInsideZone, float timeOutsideZone, float allowedTimeOutsideZone)
+    {
+        float ratioInside = Mathf.Clamp01(timeInsideZone / requiredTimeInsideZone);
+        float ratioOutside = Mathf.Clamp01(timeOutsideZone / allowedTimeOutsideZone);
+
+        if (fillRight)
+        {
+            fillRight.fillAmount = ratioInside;
+        }
+
+        if (fillLeft)
+        {
+            fillLeft.fillAmount = ratioOutside;
+        }
     }
 }

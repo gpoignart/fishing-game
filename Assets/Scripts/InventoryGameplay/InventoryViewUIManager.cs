@@ -15,6 +15,7 @@ public class InventoryViewUIManager : MonoBehaviour
 
     [SerializeField] private GameObject recipeBookUnavailableImage;
     [SerializeField] private GameObject seeRecipeBookButton;
+    [SerializeField] private GameObject recipeBookAttentionMarks;
 
     [SerializeField] private TextMeshProUGUI fishingRodLevelText;
     [SerializeField] private TextMeshProUGUI boatLevelText;
@@ -45,6 +46,18 @@ public class InventoryViewUIManager : MonoBehaviour
         }
 
         Instance = this;
+    }
+
+    // Show attention mark around the recipe book logo
+    public void ShowAttentionMarkRecipeBook()
+    {
+        recipeBookAttentionMarks.SetActive(true);
+    }
+
+    // Hide attention mark around the recipe book logo
+    public void HideAttentionMarkRecipeBook()
+    {
+        recipeBookAttentionMarks.SetActive(false);
     }
 
     // Update the fishing rod UI
@@ -196,8 +209,11 @@ public class InventoryViewUIManager : MonoBehaviour
     public void ShowInventoryStateUI()
     {
         inventoryPanel.SetActive(true);
+        HideIngredientPanelUI();
+        HideAttentionMarkRecipeBook();
         pageText.gameObject.SetActive(true);
         pageText.text = "Inventory";
+
         if (GameManager.Instance.IsRecipeBookUnlocked)
         {
             seeRecipeBookButton.SetActive(true);
@@ -208,6 +224,11 @@ public class InventoryViewUIManager : MonoBehaviour
             seeRecipeBookButton.SetActive(false);
             recipeBookUnavailableImage.SetActive(true);
         }
+
+        if (GameManager.Instance.DaysCount == 2 && !GameManager.Instance.IsRecipeBookOpened)
+        {
+            ShowAttentionMarkRecipeBook();
+        }
     }
 
     // Display the UI for the Recipe Book state
@@ -216,6 +237,7 @@ public class InventoryViewUIManager : MonoBehaviour
         recipeBookPanel.SetActive(true);
         pageText.gameObject.SetActive(true);
         pageText.text = "Recipe Book";
+        RecipeBookGameManager.Instance.Start();
     }
 
     // Hide the UI for the Inventory state

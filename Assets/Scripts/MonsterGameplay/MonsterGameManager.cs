@@ -97,7 +97,7 @@ public class MonsterGameManager : MonoBehaviour
     {
         if (isFlashlightActive)
         {
-            FlashlightController.Instance.UpdateFlashlight();
+            FlashlightController.Instance.UpdateFlashlight(loseTimer, loseTime);
         }
 
         if (isTimerActive)
